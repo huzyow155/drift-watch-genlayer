@@ -254,11 +254,14 @@ def parse_labels(text: str, n_changes: int, n_redlines: int) -> tuple[bool, list
         return (False, [], [])
 
     keys = list(data.keys())
-    if set(keys) != {"changes", "redlines"} or len(keys) != 2:
+    if set(keys) == {"changes", "redlines"} and len(keys) == 2:
+        rl = data["redlines"]
+    elif set(keys) == {"changes", "red_lines"} and len(keys) == 2:
+        rl = data["red_lines"]
+    else:
         return (False, [], [])
 
     ch = data["changes"]
-    rl = data["redlines"]
     if not isinstance(ch, list) or not isinstance(rl, list):
         return (False, [], [])
 
@@ -374,6 +377,10 @@ def validate_red_lines(red_lines_json: str) -> tuple[list[str], str]:
     canonical_json = json.dumps(sanitized, sort_keys=True, separators=(",", ":"))
     h = hashlib.sha256(canonical_json.encode("utf-8")).hexdigest()
     return (sanitized, h)
+
+
+# ---------------------------------------------------------------------------
+_leader_extra = {}
 
 
 # ---------------------------------------------------------------------------
@@ -647,7 +654,7 @@ class DriftWatch(gl.Contract):
 
         target_url = watch["url"]
 
-        def fetch_baseline() -> str:
+        def leader_fetch() -> str:
             try:
                 res = gl.nondet.web.get(target_url)
             except Exception:
@@ -674,21 +681,29 @@ class DriftWatch(gl.Contract):
             rw_hash = raw_hash(body_bytes)
 
             return json.dumps({
+                "consensus_token": "BASELINE|" + nh[:16],
                 "norm_hash": nh,
                 "raw_hash": rw_hash,
                 "norm_clauses": norm_clauses,
-                "consensus_token": "BASELINE|" + nh[:16],
             }, sort_keys=True, separators=(",", ":"))
 
-        def consensus_eval() -> str:
-            res_json = fetch_baseline()
-            d = json.loads(res_json)
-            return d["consensus_token"]
+        def validator_fetch(leader_res) -> bool:
+            if not hasattr(leader_res, "calldata"):
+                return False
+            try:
+                ldata = json.loads(leader_res.calldata)
+                res = gl.nondet.web.get(target_url)
+                body_bytes = res.body if isinstance(res.body, (bytes, bytearray)) else str(res.body).encode("utf-8")
+                cleaned = page_text(body_bytes)
+                clauses = split_clauses(cleaned)
+                norm_clauses = [normalize_clause(c) for c in clauses]
+                my_token = "BASELINE|" + norm_hash(norm_clauses)[:16]
+                return my_token == ldata.get("consensus_token")
+            except Exception:
+                return False
 
-        consensus_str = gl.eq_principle.strict_eq(consensus_eval)
-
-        # Leader executes and persists baseline state
-        res_data = json.loads(fetch_baseline())
+        result_json = gl.vm.run_nondet(leader_fetch, validator_fetch)
+        res_data = json.loads(result_json)
 
         watch["status"] = "ACTIVE"
         watch["baseline_seq"] = "1"
@@ -698,7 +713,7 @@ class DriftWatch(gl.Contract):
         watch["baseline_check_id"] = ""
         self.watches[wid] = json.dumps(watch, sort_keys=True, separators=(",", ":"))
 
-        return consensus_str
+        return res_data["consensus_token"]
 
     @gl.public.write
     def check(self, watch_id: str) -> str:
@@ -720,7 +735,7 @@ class DriftWatch(gl.Contract):
         red_lines = list(watch.get("red_lines", []))
         redlines_hash = watch.get("redlines_hash", "")
 
-        def execute_pipeline() -> str:
+        def run_eval_pipeline() -> dict:
             try:
                 res = gl.nondet.web.get(target_url)
             except Exception:
@@ -748,7 +763,7 @@ class DriftWatch(gl.Contract):
 
             # Gate 3: UNCHANGED
             if curr_raw_hash == baseline_raw_hash:
-                return json.dumps({
+                return {
                     "verdict": "UNCHANGED",
                     "norm_hash": curr_norm_hash,
                     "raw_hash": curr_raw_hash,
@@ -758,11 +773,12 @@ class DriftWatch(gl.Contract):
                     "redline_flags": [],
                     "tripwire": False,
                     "snapshot_clauses": new_clauses,
-                }, sort_keys=True, separators=(",", ":"))
+                    "consensus_token": "UNCHANGED|" + curr_norm_hash[:16],
+                }
 
             # Gate 4: COSMETIC
             if curr_norm_hash == baseline_norm_hash:
-                return json.dumps({
+                return {
                     "verdict": "COSMETIC",
                     "norm_hash": curr_norm_hash,
                     "raw_hash": curr_raw_hash,
@@ -772,12 +788,13 @@ class DriftWatch(gl.Contract):
                     "redline_flags": [],
                     "tripwire": False,
                     "snapshot_clauses": new_clauses,
-                }, sort_keys=True, separators=(",", ":"))
+                    "consensus_token": "COSMETIC|" + curr_norm_hash[:16],
+                }
 
             # Gate 5: Diff
             changes = clause_diff(baseline_clauses, new_clauses)
             if len(changes) > 12:
-                return json.dumps({
+                return {
                     "verdict": "REVIEW",
                     "norm_hash": curr_norm_hash,
                     "raw_hash": curr_raw_hash,
@@ -787,7 +804,8 @@ class DriftWatch(gl.Contract):
                     "redline_flags": [],
                     "tripwire": False,
                     "snapshot_clauses": new_clauses,
-                }, sort_keys=True, separators=(",", ":"))
+                    "consensus_token": "REVIEW|" + curr_norm_hash[:16],
+                }
 
             tripwire = injection_tripwire([c["new"] or c["old"] for c in changes])
 
@@ -808,7 +826,7 @@ class DriftWatch(gl.Contract):
                     "UNCLEAR = cannot determine. "
                     "Output strictly a JSON object with keys 'changes' and 'redlines'."
                 ),
-                "red_lines": red_lines,
+                "redlines": red_lines,
                 "changes": [
                     {
                         "index": i + 1,
@@ -828,7 +846,7 @@ class DriftWatch(gl.Contract):
             else:
                 verdict = decide(ch_labels, rl_flags, tripwire)
 
-            return json.dumps({
+            return {
                 "verdict": verdict,
                 "norm_hash": curr_norm_hash,
                 "raw_hash": curr_raw_hash,
@@ -838,17 +856,25 @@ class DriftWatch(gl.Contract):
                 "redline_flags": rl_flags if valid else [],
                 "tripwire": tripwire,
                 "snapshot_clauses": new_clauses,
-            }, sort_keys=True, separators=(",", ":"))
+                "consensus_token": verdict + "|" + curr_norm_hash[:16],
+            }
 
-        def consensus_eval() -> str:
-            res_str = execute_pipeline()
-            d = json.loads(res_str)
-            return d["verdict"] + "|" + d["norm_hash"][:16]
+        def leader_run() -> str:
+            eval_dict = run_eval_pipeline()
+            return json.dumps(eval_dict, sort_keys=True, separators=(",", ":"))
 
-        consensus_result = gl.eq_principle.strict_eq(consensus_eval)
+        def validator_run(leader_res) -> bool:
+            if not hasattr(leader_res, "calldata"):
+                return False
+            try:
+                ldata = json.loads(leader_res.calldata)
+                my_eval = run_eval_pipeline()
+                return my_eval["consensus_token"] == ldata.get("consensus_token")
+            except Exception:
+                return False
 
-        # Leader persists result
-        pipeline_data = json.loads(execute_pipeline())
+        result_json = gl.vm.run_nondet(leader_run, validator_run)
+        pipeline_data = json.loads(result_json)
         verdict = pipeline_data["verdict"]
         norm_h = pipeline_data["norm_hash"]
         raw_h = pipeline_data["raw_hash"]
