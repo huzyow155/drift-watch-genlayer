@@ -44,6 +44,7 @@ def main():
     fixtures = {
         'v2': 'terms-v2-subtle.md',
         'v3': 'terms-v3-obvious.md',
+        'v4': 'terms-v4-injection.md',
         'v5': 'terms-v5-harmless.md',
         'v6': 'terms-v6-salami1.md',
         'v7': 'terms-v7-salami2.md',

@@ -1,0 +1,4 @@
+{
+  "changes": ["MATERIAL", "NONE", "NONE", "MATERIAL"],
+  "redlines": ["CLEAR", "CLEAR", "HIT", "HIT"]
+}
