@@ -1,0 +1,28 @@
+```json
+{
+  "changes": [
+    {
+      "index": 1,
+      "label": "MATERIAL"
+    }
+  ],
+  "redlines": [
+    {
+      "index": 1,
+      "flag": "HIT"
+    },
+    {
+      "index": 2,
+      "flag": "UNCLEAR"
+    },
+    {
+      "index": 3,
+      "flag": "UNCLEAR"
+    },
+    {
+      "index": 4,
+      "flag": "UNCLEAR"
+    }
+  ]
+}
+```

@@ -1,0 +1,28 @@
+```json
+{
+  "changes": [
+    {
+      "index": 1,
+      "label": "NONE"
+    }
+  ],
+  "redlines": [
+    {
+      "redline": "Must not allow sharing of identifiable or non-anonymized user data with third parties.",
+      "flag": "CLEAR"
+    },
+    {
+      "redline": "Must not keep deleted user data for more than 90 days.",
+      "flag": "CLEAR"
+    },
+    {
+      "redline": "Must keep the right of users to export or delete their data.",
+      "flag": "CLEAR"
+    },
+    {
+      "redline": "Must not permit selling personal data.",
+      "flag": "CLEAR"
+    }
+  ]
+}
+```
