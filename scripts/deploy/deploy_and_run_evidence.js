@@ -68,7 +68,7 @@ async function main() {
   console.log("DRIFT WATCH: MILESTONES 1, 4, 5 LIVE EVIDENCE");
   console.log("=================================================");
 
-  const evidenceDir = path.join(__dirname, '../../docs/evidence');
+  const evidenceDir = path.join(__dirname, '../../docs/evidence_v2');
   if (!fs.existsSync(evidenceDir)) fs.mkdirSync(evidenceDir, { recursive: true });
 
   const envPath = path.join(__dirname, '../../.env');
@@ -223,7 +223,25 @@ async function main() {
     sha256: guardSha,
   };
 
-  // Save deployments.json
+  // Save deployments.json with superseded history
+  const depPath = path.join(__dirname, 'deployments.json');
+  let superseded = [];
+  if (fs.existsSync(depPath)) {
+    try {
+      const oldDep = JSON.parse(fs.readFileSync(depPath, 'utf8'));
+      if (oldDep.superseded) superseded = oldDep.superseded;
+      if (oldDep.driftWatch && oldDep.driftWatch.address !== watchAddress) {
+        superseded.push({
+          driftWatch: oldDep.driftWatch,
+          driftGuard: oldDep.driftGuard,
+          deployedAt: oldDep.deployedAt,
+          status: "superseded",
+          reason: "Prompt enhanced in Iteration 1 to strictly enforce flat string arrays for LLM labels.",
+        });
+      }
+    } catch (e) {}
+  }
+
   const deploymentsData = {
     network: "studionet",
     chainId: 61999,
@@ -242,12 +260,13 @@ async function main() {
       explorer: `https://explorer-studio.genlayer.com/address/${guardAddress}`,
     },
     deployedAt: new Date().toISOString(),
+    superseded: superseded,
   };
   fs.writeFileSync(
-    path.join(__dirname, 'deployments.json'),
+    depPath,
     JSON.stringify(deploymentsData, null, 2)
   );
-  console.log("Saved deployments.json");
+  console.log("Saved deployments.json (with superseded deployment preserved)");
 
   // -------------------------------------------------------------------------
   // Case (a): create_watch and set_baseline on v0
@@ -529,12 +548,12 @@ async function main() {
   });
   console.log("  7a. is_safe_for with valid hashes:", isSafeForValid);
 
-  const isSafeForTampered = await client.readContract({
+  const isSafeForMismatched = await client.readContract({
     address: guardAddress,
     functionName: 'is_safe_for',
     args: [account.address, "3", "0000000000000000000000000000000000000000000000000000000000000000", pinData.pinned_redlines_hash],
   });
-  console.log("  7b. is_safe_for with tampered baseline hash:", isSafeForTampered);
+  console.log("  7b. is_safe_for with mismatched baseline hash:", isSafeForMismatched);
 
   evidence.steps.case_i = {
     guardStatus1,
@@ -544,7 +563,7 @@ async function main() {
     guardStatus5,
     guardStatus6,
     isSafeForValid,
-    isSafeForTampered,
+    isSafeForMismatched,
   };
 
   // -------------------------------------------------------------------------
@@ -570,24 +589,26 @@ async function main() {
   });
   console.log("  is_alarm_for on real MATERIAL check (watch 1, check 3):", isAlarmValid);
 
-  const isAlarmTampered = await client.readContract({
+  const isAlarmMismatched = await client.readContract({
     address: watchAddress,
     functionName: 'is_alarm_for',
     args: ["1", c3.baseline_norm_hash, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"],
   });
-  console.log("  is_alarm_for with tampered candidate hash:", isAlarmTampered);
+  console.log("  is_alarm_for with mismatched candidate hash:", isAlarmMismatched);
 
   evidence.steps.case_k = {
     isAlarmValid,
-    isAlarmTampered,
+    isAlarmMismatched,
   };
 
-  // Save all evidence
+  // Save all evidence to live_evidence_v2.json and update live_evidence.json
+  const evidenceOutV2 = path.join(__dirname, 'live_evidence_v2.json');
+  fs.writeFileSync(evidenceOutV2, JSON.stringify(evidence, null, 2));
   const evidenceOut = path.join(__dirname, 'live_evidence.json');
   fs.writeFileSync(evidenceOut, JSON.stringify(evidence, null, 2));
   console.log(`\n=================================================`);
-  console.log(`ALL MILESTONES 1, 4, 5 ON-CHAIN RUNS COMPLETE!`);
-  console.log(`Evidence saved to: ${evidenceOut}`);
+  console.log(`ALL MILESTONES 1, 4, 5 PREVIEW RUNS COMPLETE!`);
+  console.log(`Evidence saved to: ${evidenceOutV2} and ${evidenceOut}`);
   console.log(`Receipts saved in: ${evidenceDir}`);
   console.log(`=================================================`);
 }

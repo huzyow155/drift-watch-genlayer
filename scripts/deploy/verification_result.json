@@ -1,19 +1,19 @@
 {
   "driftWatch": {
     "contract": "DriftWatch",
-    "deployTxHash": "0xe5eeb4ba21fd7370f3ddd789dce5bcbb382d618abd1ab7f8f2e44102187713e8",
+    "deployTxHash": "0xbcc2b725f32f79d8477db824bed444e53fb7ff6ef6e08d6ebaa72537e49f8f39",
     "rpcMethod": "eth_getTransactionByHash",
     "rpcField": "result.data.contract_code",
-    "localSha256": "9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50",
-    "chainSha256": "9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50",
+    "localSha256": "2dcd113b3811f7041495878fb0e072020ca366afbe7d35740902080db057ca3e",
+    "chainSha256": "2dcd113b3811f7041495878fb0e072020ca366afbe7d35740902080db057ca3e",
     "byteForByteMatch": true,
-    "sourceBytesLength": 36934,
+    "sourceBytesLength": 37223,
     "diffOutput": "0 diff (byte-for-byte identical)",
-    "verifiedAt": "2026-10-17T02:53:56.721Z"
+    "verifiedAt": "2026-10-17T07:01:14.175Z"
   },
   "driftGuard": {
     "contract": "DriftGuard",
-    "deployTxHash": "0xef8092b855239516c1a3a4b2e85c70733ff5c2245484c1631ae9335db633b4b9",
+    "deployTxHash": "0x9f3428148b3f7047d912903a7469acdd4318c07e225bb43621a30e952a2f9c6f",
     "rpcMethod": "eth_getTransactionByHash",
     "rpcField": "result.data.contract_code",
     "localSha256": "eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc",
@@ -21,6 +21,6 @@
     "byteForByteMatch": true,
     "sourceBytesLength": 9050,
     "diffOutput": "0 diff (byte-for-byte identical)",
-    "verifiedAt": "2026-10-17T02:53:57.068Z"
+    "verifiedAt": "2026-10-17T07:01:14.557Z"
   }
 }
