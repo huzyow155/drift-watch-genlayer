@@ -1,0 +1,19 @@
+{
+  "network": "studionet",
+  "chainId": 61999,
+  "rpc": "https://studio.genlayer.com/api",
+  "explorerBase": "https://explorer-studio.genlayer.com/address",
+  "driftWatch": {
+    "address": "0x7Ce13F5696f3A81AB5782BC203158691c0D742Cf",
+    "deployTxHash": "0xe5eeb4ba21fd7370f3ddd789dce5bcbb382d618abd1ab7f8f2e44102187713e8",
+    "sha256": "9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50",
+    "explorer": "https://explorer-studio.genlayer.com/address/0x7Ce13F5696f3A81AB5782BC203158691c0D742Cf"
+  },
+  "driftGuard": {
+    "address": "0x02167c91C7054F7503Ea38200eD293003A8E9e4F",
+    "deployTxHash": "0xef8092b855239516c1a3a4b2e85c70733ff5c2245484c1631ae9335db633b4b9",
+    "sha256": "eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc",
+    "explorer": "https://explorer-studio.genlayer.com/address/0x02167c91C7054F7503Ea38200eD293003A8E9e4F"
+  },
+  "deployedAt": "2026-10-17T02:25:54.720Z"
+}
