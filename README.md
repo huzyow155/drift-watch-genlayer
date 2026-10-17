@@ -78,7 +78,16 @@ npm run scan:secrets
 
 ## Deployments (Studionet Preview)
 
-Deployment artifacts and verified transaction receipts will be recorded in `scripts/deploy/deployments.json` and `docs/VERIFICATION.md` upon deployment to Studionet.
+- **Network**: Studionet (Chain ID: `61999`)
+- **RPC Endpoint**: `https://studio.genlayer.com/api`
+- **Explorer Base**: `https://explorer-studio.genlayer.com/address/`
+
+| Contract | Address | Deploy Tx Hash | Verified Source SHA-256 | Explorer Link |
+| :--- | :--- | :--- | :--- | :--- |
+| **DriftWatch** | `0x7Ce13F5696f3A81AB5782BC203158691c0D742Cf` | `0xe5eeb4ba21fd7370f3ddd789dce5bcbb382d618abd1ab7f8f2e44102187713e8` | `9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50` | [DriftWatch Explorer](https://explorer-studio.genlayer.com/address/0x7Ce13F5696f3A81AB5782BC203158691c0D742Cf) |
+| **DriftGuard** | `0x02167c91C7054F7503Ea38200eD293003A8E9e4F` | `0xef8092b855239516c1a3a4b2e85c70733ff5c2245484c1631ae9335db633b4b9` | `eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc` | [DriftGuard Explorer](https://explorer-studio.genlayer.com/address/0x02167c91C7054F7503Ea38200eD293003A8E9e4F) |
+
+Full on-chain receipts and live evidence for all test cases (a) through (k) are documented in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
 
 ## License
 
