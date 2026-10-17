@@ -1,0 +1,26 @@
+{
+  "driftWatch": {
+    "contract": "DriftWatch",
+    "deployTxHash": "0xe5eeb4ba21fd7370f3ddd789dce5bcbb382d618abd1ab7f8f2e44102187713e8",
+    "rpcMethod": "eth_getTransactionByHash",
+    "rpcField": "result.data.contract_code",
+    "localSha256": "9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50",
+    "chainSha256": "9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50",
+    "byteForByteMatch": true,
+    "sourceBytesLength": 36934,
+    "diffOutput": "0 diff (byte-for-byte identical)",
+    "verifiedAt": "2026-10-17T02:53:56.721Z"
+  },
+  "driftGuard": {
+    "contract": "DriftGuard",
+    "deployTxHash": "0xef8092b855239516c1a3a4b2e85c70733ff5c2245484c1631ae9335db633b4b9",
+    "rpcMethod": "eth_getTransactionByHash",
+    "rpcField": "result.data.contract_code",
+    "localSha256": "eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc",
+    "chainSha256": "eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc",
+    "byteForByteMatch": true,
+    "sourceBytesLength": 9050,
+    "diffOutput": "0 diff (byte-for-byte identical)",
+    "verifiedAt": "2026-10-17T02:53:57.068Z"
+  }
+}
