@@ -1,0 +1,15 @@
+Case: V5 Run 1
+Tx Hash: 0x9573fe843011d720b21f2610708eae21698961e9bee546e8cdc73d3bb0bdfe9c
+Elapsed: 12.64s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-glm
+Parse Evaluation: SUCCESS
+Parse Reason: Successfully parsed labels
+
+--- RAW MODEL OUTPUT ---
+```json
+{
+  "changes": ["NONE"],
+  "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]
+}
+```

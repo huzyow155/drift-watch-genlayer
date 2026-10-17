@@ -1,0 +1,10 @@
+Case: V2 Run 3
+Tx Hash: 0x27ce3e28274630e2df68e4290bccec7154e2bbfb7806be581bb313e38d7c3af3
+Elapsed: 12.07s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-gpt-5-4
+Parse Evaluation: SUCCESS
+Parse Reason: Successfully parsed labels
+
+--- RAW MODEL OUTPUT ---
+{"changes":["MATERIAL"],"redlines":["HIT","UNCLEAR","UNCLEAR","UNCLEAR"]}

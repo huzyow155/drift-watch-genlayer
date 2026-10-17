@@ -1,0 +1,37 @@
+Case: V2 Run 2
+Tx Hash: 0x732bbd6f143e6cfd7589a20a70afa1b5aab6147c23a4477dea6314793e9fd4ab
+Elapsed: 12.04s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: anthropic/claude-sonnet-4.6
+Parse Evaluation: REJECTED
+Parse Reason: Invalid change label at index 0: '[object Object]'
+
+--- RAW MODEL OUTPUT ---
+```json
+{
+  "changes": [
+    {
+      "index": 1,
+      "label": "MATERIAL"
+    }
+  ],
+  "redlines": [
+    {
+      "index": 1,
+      "flag": "HIT"
+    },
+    {
+      "index": 2,
+      "flag": "UNCLEAR"
+    },
+    {
+      "index": 3,
+      "flag": "UNCLEAR"
+    },
+    {
+      "index": 4,
+      "flag": "UNCLEAR"
+    }
+  ]
+}
+```

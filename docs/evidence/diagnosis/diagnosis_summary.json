@@ -1,0 +1,111 @@
+{
+  "v2": [
+    {
+      "run": 1,
+      "txHash": "0xee6477ec40f637bc1144fa27307f68d2b1503d3b928b08c6fec4b9bb0c65bcdc",
+      "elapsed": "15.45",
+      "rawOutput": "```json\n{\n  \"changes\": [\n    {\n      \"index\": 1,\n      \"label\": \"MATERIAL\"\n    }\n  ],\n  \"redlines\": [\n    {\n      \"index\": 1,\n      \"flag\": \"HIT\"\n    },\n    {\n      \"index\": 2,\n      \"flag\": \"UNCLEAR\"\n    },\n    {\n      \"index\": 3,\n      \"flag\": \"UNCLEAR\"\n    },\n    {\n      \"index\": 4,\n      \"flag\": \"UNCLEAR\"\n    }\n  ]\n}\n```",
+      "diag": {
+        "ok": false,
+        "reason": "Invalid change label at index 0: '[object Object]'",
+        "ch": [
+          {
+            "index": 1,
+            "label": "MATERIAL"
+          }
+        ]
+      }
+    },
+    {
+      "run": 2,
+      "txHash": "0x732bbd6f143e6cfd7589a20a70afa1b5aab6147c23a4477dea6314793e9fd4ab",
+      "elapsed": "12.04",
+      "rawOutput": "```json\n{\n  \"changes\": [\n    {\n      \"index\": 1,\n      \"label\": \"MATERIAL\"\n    }\n  ],\n  \"redlines\": [\n    {\n      \"index\": 1,\n      \"flag\": \"HIT\"\n    },\n    {\n      \"index\": 2,\n      \"flag\": \"UNCLEAR\"\n    },\n    {\n      \"index\": 3,\n      \"flag\": \"UNCLEAR\"\n    },\n    {\n      \"index\": 4,\n      \"flag\": \"UNCLEAR\"\n    }\n  ]\n}\n```",
+      "diag": {
+        "ok": false,
+        "reason": "Invalid change label at index 0: '[object Object]'",
+        "ch": [
+          {
+            "index": 1,
+            "label": "MATERIAL"
+          }
+        ]
+      }
+    },
+    {
+      "run": 3,
+      "txHash": "0x27ce3e28274630e2df68e4290bccec7154e2bbfb7806be581bb313e38d7c3af3",
+      "elapsed": "12.07",
+      "rawOutput": "{\"changes\":[\"MATERIAL\"],\"redlines\":[\"HIT\",\"UNCLEAR\",\"UNCLEAR\",\"UNCLEAR\"]}",
+      "diag": {
+        "ok": true,
+        "reason": "Successfully parsed labels",
+        "ch": [
+          "MATERIAL"
+        ],
+        "rl": [
+          "HIT",
+          "UNCLEAR",
+          "UNCLEAR",
+          "UNCLEAR"
+        ]
+      }
+    }
+  ],
+  "v5": [
+    {
+      "run": 1,
+      "txHash": "0x9573fe843011d720b21f2610708eae21698961e9bee546e8cdc73d3bb0bdfe9c",
+      "elapsed": "12.64",
+      "rawOutput": "```json\n{\n  \"changes\": [\"NONE\"],\n  \"redlines\": [\"CLEAR\", \"CLEAR\", \"CLEAR\", \"CLEAR\"]\n}\n```",
+      "diag": {
+        "ok": true,
+        "reason": "Successfully parsed labels",
+        "ch": [
+          "NONE"
+        ],
+        "rl": [
+          "CLEAR",
+          "CLEAR",
+          "CLEAR",
+          "CLEAR"
+        ]
+      }
+    },
+    {
+      "run": 2,
+      "txHash": "0x2b45942fb65f3a43aa305e40e4527ff62468fef3e39aa61a01f21214b5f6d03e",
+      "elapsed": "15.63",
+      "rawOutput": "```json\n{\n  \"changes\": [\n    {\n      \"index\": 1,\n      \"label\": \"NONE\"\n    }\n  ],\n  \"redlines\": [\n    {\n      \"redline\": \"Must not allow sharing of identifiable or non-anonymized user data with third parties.\",\n      \"flag\": \"CLEAR\"\n    },\n    {\n      \"redline\": \"Must not keep deleted user data for more than 90 days.\",\n      \"flag\": \"CLEAR\"\n    },\n    {\n      \"redline\": \"Must keep the right of users to export or delete their data.\",\n      \"flag\": \"CLEAR\"\n    },\n    {\n      \"redline\": \"Must not permit selling personal data.\",\n      \"flag\": \"CLEAR\"\n    }\n  ]\n}\n```",
+      "diag": {
+        "ok": false,
+        "reason": "Invalid change label at index 0: '[object Object]'",
+        "ch": [
+          {
+            "index": 1,
+            "label": "NONE"
+          }
+        ]
+      }
+    },
+    {
+      "run": 3,
+      "txHash": "0xa702fe7ba829cec3a1619e2feacbc6685e685f9a6d9e791ecfcd4480e055a076",
+      "elapsed": "15.78",
+      "rawOutput": "{\"changes\":[\"NONE\"],\"redlines\":[\"CLEAR\",\"CLEAR\",\"CLEAR\",\"CLEAR\"]}",
+      "diag": {
+        "ok": true,
+        "reason": "Successfully parsed labels",
+        "ch": [
+          "NONE"
+        ],
+        "rl": [
+          "CLEAR",
+          "CLEAR",
+          "CLEAR",
+          "CLEAR"
+        ]
+      }
+    }
+  ]
+}

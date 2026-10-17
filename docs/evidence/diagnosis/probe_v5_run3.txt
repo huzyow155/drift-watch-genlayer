@@ -1,0 +1,10 @@
+Case: V5 Run 3
+Tx Hash: 0xa702fe7ba829cec3a1619e2feacbc6685e685f9a6d9e791ecfcd4480e055a076
+Elapsed: 15.78s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-kimi
+Parse Evaluation: SUCCESS
+Parse Reason: Successfully parsed labels
+
+--- RAW MODEL OUTPUT ---
+{"changes":["NONE"],"redlines":["CLEAR","CLEAR","CLEAR","CLEAR"]}

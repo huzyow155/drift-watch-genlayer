@@ -1,0 +1,37 @@
+Case: V5 Run 2
+Tx Hash: 0x2b45942fb65f3a43aa305e40e4527ff62468fef3e39aa61a01f21214b5f6d03e
+Elapsed: 15.63s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-minimax
+Parse Evaluation: REJECTED
+Parse Reason: Invalid change label at index 0: '[object Object]'
+
+--- RAW MODEL OUTPUT ---
+```json
+{
+  "changes": [
+    {
+      "index": 1,
+      "label": "NONE"
+    }
+  ],
+  "redlines": [
+    {
+      "redline": "Must not allow sharing of identifiable or non-anonymized user data with third parties.",
+      "flag": "CLEAR"
+    },
+    {
+      "redline": "Must not keep deleted user data for more than 90 days.",
+      "flag": "CLEAR"
+    },
+    {
+      "redline": "Must keep the right of users to export or delete their data.",
+      "flag": "CLEAR"
+    },
+    {
+      "redline": "Must not permit selling personal data.",
+      "flag": "CLEAR"
+    }
+  ]
+}
+```
