@@ -25,6 +25,7 @@ This document provides a comprehensive, honest catalog of known technical and ar
 - **Threshold on Changed Clauses**: If a diff exceeds 12 modified, added, or removed clauses, the contract automatically returns `REVIEW`. Complete document overhauls or massive rewrites cannot be evaluated reliably in a single consensus call and require human review.
 - **Not Legal Advice**: Drift Watch does not provide legal opinions or determine statutory compliance. It checks whether detected textual diffs violate specific, user-defined red lines in plain English.
 - **LLM Variance on Borderline Phrasing**: While consensus requires majority agreement on a single canonical verdict string (`<VERDICT>|<norm_hash16>`), subtle edge-case phrasing may occasionally generate divergence or require `REVIEW`.
+- **Subtle One-Word Modifications & Parser Fail-Safe**: Với ca tinh vi chỉ đổi 1 từ (chẳng hạn bỏ chữ "anonymized"), kết quả phụ thuộc vào nhãn do mô hình ngôn ngữ trả về; khi nhãn không parse được (ví dụ do mô hình trả về mảng object thay vì mảng chuỗi phẳng), hệ thống tự động trả về `REVIEW` (an toàn theo nguyên tắc fail-safe, nhưng gây nhiều báo động cho người tích hợp).
 
 ## 6. Baseline Governance & DriftGuard Semantics
 - **Owner Controls Baseline Updates**: The watch creator controls `accept_change`. The baseline does not advance automatically. This design guarantees that incremental ("salami-slice") edits accumulate against the original accepted baseline rather than evading detection across small hops.

@@ -1,10 +1,10 @@
-# DriftWatch & DriftGuard: On-Chain Verification & Live Evidence
+# DriftWatch & DriftGuard: On-Chain Verification & Preview Evidence
 
 **Network**: Studionet  
 **Chain ID**: 61999  
 **RPC Endpoint**: `https://studio.genlayer.com/api`  
 **Explorer Base**: `https://explorer-studio.genlayer.com/address/`  
-**Execution Account (Throwaway)**: `0x795Ee5E4F8A2cA5B816228B97FE8740dA3Aa7d2a`  
+**Execution Account (Throwaway)**: `0x332A3e3864B5D6098f3DD3E71560cca3718fD14E`  
 **Fixtures Repository**: `https://github.com/huzyow155/drift-watch-fixtures`  
 **Fixtures Commit**: `c8ff0f0cf8b5e406a44baad04867cb793c52d328`  
 
@@ -12,90 +12,94 @@
 
 ## 1. Deployed Contracts & Byte-for-Byte Source Verification
 
-Source verification was performed by querying the RPC method `eth_getTransactionByHash` for each contract's deployment transaction, decoding the base64 string at `result.data.contract_code`, and verifying that its SHA-256 hash matches the local repository file byte-for-byte.
+Source verification was performed via JSON-RPC query `eth_getTransactionByHash` for each contract deployment transaction, decoding `result.data.contract_code` (base64), and computing its SHA-256 hash against local files.
+
+### Active Deployment (Iteration 1: Flat Array Schema)
 
 | Contract | Address | Deploy Tx Hash | Local SHA-256 | On-Chain Decoded SHA-256 | Match Result | Explorer Link |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **DriftWatch** | `0x7Ce13F5696f3A81AB5782BC203158691c0D742Cf` | `0xe5eeb4ba21fd7370f3ddd789dce5bcbb382d618abd1ab7f8f2e44102187713e8` | `9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50` | `9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50` | **EXACT MATCH** (0 diff) | [DriftWatch Explorer](https://explorer-studio.genlayer.com/address/0x7Ce13F5696f3A81AB5782BC203158691c0D742Cf) |
-| **DriftGuard** | `0x02167c91C7054F7503Ea38200eD293003A8E9e4F` | `0xef8092b855239516c1a3a4b2e85c70733ff5c2245484c1631ae9335db633b4b9` | `eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc` | `eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc` | **EXACT MATCH** (0 diff) | [DriftGuard Explorer](https://explorer-studio.genlayer.com/address/0x02167c91C7054F7503Ea38200eD293003A8E9e4F) |
+| **DriftWatch** | `0xe8A159D3622D33aA0B62da57aF033F2C6D9fdEfD` | `0xbcc2b725f32f79d8477db824bed444e53fb7ff6ef6e08d6ebaa72537e49f8f39` | `2dcd113b3811f7041495878fb0e072020ca366afbe7d35740902080db057ca3e` | `2dcd113b3811f7041495878fb0e072020ca366afbe7d35740902080db057ca3e` | **EXACT MATCH** (0 diff) | [DriftWatch Explorer](https://explorer-studio.genlayer.com/address/0xe8A159D3622D33aA0B62da57aF033F2C6D9fdEfD) |
+| **DriftGuard** | `0x0f336D97134D9770aBFA20d3B2Ad5B9f7D4BC557` | `0x9f3428148b3f7047d912903a7469acdd4318c07e225bb43621a30e952a2f9c6f` | `eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc` | `eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc` | **EXACT MATCH** (0 diff) | [DriftGuard Explorer](https://explorer-studio.genlayer.com/address/0x0f336D97134D9770aBFA20d3B2Ad5B9f7D4BC557) |
+
+### Superseded Deployment (Iteration 0)
+
+| Contract | Address | Deploy Tx Hash | Local SHA-256 | Status | Reason |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **DriftWatch** | `0x7Ce13F5696f3A81AB5782BC203158691c0D742Cf` | `0xe5eeb4ba21fd7370f3ddd789dce5bcbb382d618abd1ab7f8f2e44102187713e8` | `9d80f1bc271116dae1b29cbf34f823f104d5fca94f6e012140b2686a32fe8e50` | Superseded | Prompt instruction enhanced in Iteration 1 to enforce flat string arrays. Raw receipts preserved in `docs/evidence/`. |
+| **DriftGuard** | `0x02167c91C7054F7503Ea38200eD293003A8E9e4F` | `0xef8092b855239516c1a3a4b2e85c70733ff5c2245484c1631ae9335db633b4b9` | `eb1b26aed095daf61ad1b94b1752d1636055965311543319d8fe214bc24863dc` | Superseded | Re-deployed to reference active DriftWatch contract address. |
 
 Verification output recorded in `scripts/deploy/verification_result.json`.
 
 ---
 
-## 2. Live On-Chain Test Matrix (Cases a - k)
+## 2. Studionet On-Chain Test Matrix (Cases a - k)
 
-All transactions executed against Studionet and validated with full receipts.
+All transactions executed against Studionet and validated with individual consensus receipts saved in `docs/evidence_v2/`.
 
 | Case | Description | Method | Tx Hash | Latency | Status / Result / Leader | Stored Outcome / Assertion |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Deploy Watch** | Deploy DriftWatch core contract | deployContract | `0xe5eeb4ba21fd7370f3ddd789dce5bcbb382d618abd1ab7f8f2e44102187713e8` | 8.18s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Deployed at `0x7Ce13F5696f3A81AB5782BC203158691c0D742Cf` |
-| **Deploy Guard** | Deploy DriftGuard consumer contract | deployContract | `0xef8092b855239516c1a3a4b2e85c70733ff5c2245484c1631ae9335db633b4b9` | 8.60s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Deployed at `0x02167c91C7054F7503Ea38200eD293003A8E9e4F` |
-| **Case (a)** | Create watch #1 (`terms-v0.md`) | `create_watch` | `0x06f3ce7fdfa6accf70cef74c3c0313621a76beecab389b78aa96772b7d06d4d2` | 5.18s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Status: `NEEDS_BASELINE`, 4 redlines pinned |
-| **Case (a)** | Lock baseline #1 on v0 | `set_baseline` | `0x0cd0875fdefed2fbdfce5f9916e91c3af157324a489d07e01c814ca4c5503f96` | 11.79s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Status: `ACTIVE`, 20 baseline clauses stored |
-| **Case (b)** | Check against v0 (Gate 3) | `check` | `0xd6404843707c36c32a282026b8a6e915f4c698760cb26a35dabb69798c0f408f` | 11.77s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #1: verdict `UNCHANGED`, gate `UNCHANGED` |
-| **Case (c)** | Update source to `terms-v1-cosmetic.html` | `update_source` | `0xfdeea557f88ce775d33838503cd07406cad4f8a7d1efa1485baa9ab741700fb4` | 8.49s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v1 |
-| **Case (c)** | Check against v1 (Gate 4) | `check` | `0x20e9f6dcf05d3e009cb508a59f6e29a4debd9b321f2ddab297e86e0981964355` | 15.03s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #2: verdict `COSMETIC`, gate `COSMETIC` |
-| **Case (d)** | Update source to `terms-v2-subtle.md` | `update_source` | `0xe2a2d4e8daf4de5c1cbd6b792d8482b14c2c385dcae343ac41f8a10fe5e0d250` | 8.56s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v2 |
-| **Case (d)** | Check v2 (subtle: drops "anonymized") | `check` | `0x697c949a5df96322db16420a35ff14ad708281a448b4c60461bf11c08ca98e05` | 25.03s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #3: verdict `REVIEW` (fail-safe conservative label) |
-| **Case (d)** | Update source to `terms-v3-obvious.md` | `update_source` | `0xbcdab529b0d13e67a3ebe3305b180fcf061afb58a2c251b691a8c5a72eab0d07` | 5.28s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v3 |
-| **Case (d)** | Check v3 (obvious: sells data, deletes export) | `check` | `0x8079a8a3a7f72529edfd9d0cf6978d18d62338389aca783278bba7b38b149a6b` | 28.35s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #4: verdict `MATERIAL`, 2 changes flagged |
-| **Case (d)** | Update source to `terms-v4-injection.md` | `update_source` | `0x860b77e014037f264c5cfcc7d91315b2355f8195f3a4a52c73ef3098cc7ca2e1` | 8.54s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v4 |
-| **Case (d)** | Check v4 (injection attempt) | `check` | `0xc869fd4bce3784f9393f3bd8869c82f6dc4a288c684efa2754476069c0541ac4` | 28.77s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #5: verdict `MATERIAL`, `tripwire: true` |
-| **Case (d)** | Update source to `terms-v5-harmless.md` | `update_source` | `0xc4244f381ce7ee92ca8cc95146b67910ea02098d9b5a7a831e07f44a08407717` | 8.53s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v5 |
-| **Case (d)** | Check v5 (harmless support email change) | `check` | `0xf664d88670e795b6129b9c9566f2b48e93709d5b866a371fd13057d58a4d9f2c` | 15.20s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #6: verdict `REVIEW` (fail-safe conservative label) |
-| **Case (d)** | Update source to `terms-v6-salami1.md` | `update_source` | `0x6a5066fe206fb2df0df7471505f692a028fdae554877ab37b1df44983b2a2164` | 5.53s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v6 |
-| **Case (d)** | Check v6 (salami1: 60d retention <= 90d redline) | `check` | `0xd7084d6e5a94db6cab1cdfd2f709b6953bdf9d5f92e2db09f19e265dbe585de6` | 18.61s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #7: verdict `MINOR` |
-| **Case (e)** | Baseline-never-moves verification | `get_watch` | readContract | <1.0s | SUCCESS | Baseline seq remained `1`, baseline hash strictly matches v0 |
-| **Case (d)** | Update source to `terms-v7-salami2.md` | `update_source` | `0x23ec11b9f282a09edf50dd8cee2b33e3fa0248b7da91fa4b10306f8101325fe6` | 5.18s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v7 |
-| **Case (d)** | Check v7 (salami2: 100d retention > 90d redline) | `check` | `0x4426f0d45b2a680aece992fe4b9eb3a1d77c0c9110d8fc839d0525fb3875759a` | 28.52s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #8: verdict `MATERIAL`, 2 cumulative changes |
-| **Case (f)** | Duplicate observation rejection | `check` | `0xa494f4114c6b5ba6da9937dad1817f1de5551f65a6cca28d0c802260547f1f50` | 160.63s | ACCEPTED / MAJORITY_AGREE / ERROR | Rejected with `duplicate observation: already recorded in check 8` |
-| **Case (g)** | Create 404 watch | `create_watch` | `0xe4bceda774d20c31fc8e734099708f463f86029fe8c91c18ca8eb75c1f55dad5` | 8.61s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Watch #2 created |
-| **Case (g)** | Set baseline on 404 URL | `set_baseline` | `0xa999067de1012f9a0cec66ff3171d4aa84a6893a30e3be721e26d983b7a1b160` | 41.85s | UNDETERMINED / MAJORITY_DISAGREE / ERROR | Rejected with HTTP 404 status error |
-| **Case (g)** | Update source to mismatched host | `update_source` | `0x40689d470d67fe962dbce1fb06597413bf1e1b8a3a18b95c113fb24f74ac596d` | 8.73s | ACCEPTED / MAJORITY_AGREE / ERROR | Rejected with `host mismatch: cannot change monitored domain` |
-| **Case (h)** | Accept change from check #6 | `accept_change` | `0xfbec551c17e16a209eddd538694bd8456d0039092bd71dedb7ef7d05df7df230` | 5.29s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Baseline seq advances to `2`, baseline check id `6` |
-| **Case (h)** | Update source back to v5 | `update_source` | `0x12853bf293863ed71643671da3efbb7657b55493473f769d283efcc8e380ba89` | 8.48s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Monitored URL set to v5 |
-| **Case (h)** | Check v5 against new baseline | `check` | `0xc223951902845141a4734cf71be9531175a95d0b347bca6ca8cb80786dcc2b17` | 11.77s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #9: verdict `COSMETIC`, gate `COSMETIC` |
-| **Case (i)** | Create fresh watch #3 for DriftGuard | `create_watch` | `0x97042ae521e650bce4a9c922bee9e9846babc32af5054aa6c9942ccf18ca15cc` | 5.16s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Watch #3 created |
-| **Case (i)** | Set baseline on watch #3 | `set_baseline` | `0x4a2384ef43b6dae75a89790aa061ee6d38d93c5881551570b856e5129955df20` | 11.79s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Watch #3 active |
-| **Case (i)** | Pin watch #3 in DriftGuard | `pin` | `0x51fe79202cad6ba6215edc792b5c746c391a942ccff6ed896d11e41da57091cb` | 8.65s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Guard state: `NO_CHECK_YET`, `safe: false` |
-| **Case (i)** | Check v0 on watch #3 | `check` | `0x2a47a240493ec42e52a92838cf7af69171018e5937a7a88243ace300fc5de5c2` | 11.91s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Guard state: `OK`, `safe: true` |
-| **Case (i)** | Update watch #3 to v2 & check | `check` | `0x8ed862c2e2495d698f281c0a78f4c1696151f43dbbe77901162b359fafb8814e` | 58.67s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Guard state: `ALARM`, `safe: false` |
-| **Case (i)** | Acknowledge check #11 | `acknowledge` | `0x0418f24169c9d7beb5b024e8590d605ca72486ecd14e934ce691fe5abb49a02b` | 8.51s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Guard state: `ACKNOWLEDGED`, `safe: true` |
-| **Case (i)** | Accept change on watch #3 | `accept_change` | `0x07bf3bc07bc05c5bd576aeab52a29cd5649db1b3fad53044533fadb89a19f86e` | 8.53s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Guard state: `BASELINE_CHANGED`, `safe: false` |
-| **Case (i)** | Repin watch #3 in DriftGuard | `repin` | `0x7ae689ee19f59d6a0efd9abd12c138310b8b1e1b56a2c56034a82b005f522b33` | 8.62s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Baseline hashes updated |
-| **Case (i)** | Check v2 on watch #3 | `check` | `0xd4a50a7ddbf80f9cfe5fefd906c33f33f729d206cbef6fc1b6920ee5e7b36d22` | 11.81s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Guard state: `OK`, `safe: true` |
-| **Case (i)** | Synchronous `is_safe_for` binding | `is_safe_for` | readContract | <1.0s | SUCCESS | Valid hashes -> `true`; tampered -> `false` |
-| **Case (j)** | Read on-chain stats counters | `get_stats` | readContract | <1.0s | SUCCESS | Total checks: `12`, Cosmetic: `3`, Material: `3`, Minor: `1`, None: `0`, Review: `3`, Unchanged: `2` |
-| **Case (k)** | Verify `is_alarm_for` binding | `is_alarm_for` | readContract | <1.0s | SUCCESS | Valid check candidate -> `true`; tampered -> `false` |
+| **Deploy Watch** | Deploy DriftWatch core contract | deployContract | `0xbcc2b725f32f79d8477db824bed444e53fb7ff6ef6e08d6ebaa72537e49f8f39` | 10.84s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Deployed at `0xe8A159D3622D33aA0B62da57aF033F2C6D9fdEfD` |
+| **Deploy Guard** | Deploy DriftGuard consumer contract | deployContract | `0x9f3428148b3f7047d912903a7469acdd4318c07e225bb43621a30e952a2f9c6f` | 5.36s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Deployed at `0x0f336D97134D9770aBFA20d3B2Ad5B9f7D4BC557` |
+| **Case (a)** | Create watch #1 (`terms-v0.md`) | `create_watch` | `0xc042d6c67379fa6305e3ce25081203613609baea771d1d28b0ca0c2e1d970c08` | 5.47s | ACCEPTED / MAJORITY_AGREE / SUCCESS | `status: NEEDS_BASELINE`, 4 red lines stored |
+| **Case (a)** | Set baseline #1 on v0 | `set_baseline` | `0xdc7ad7d91a50840a5f312598ef173aaa856c044018582e10762bbdf41e989132` | 12.09s | ACCEPTED / MAJORITY_AGREE / SUCCESS | `status: ACTIVE`, 20 normalized baseline clauses stored |
+| **Case (b)** | Check against v0 (Gate 3) | `check` | `0x82b5820d57ab1a5fa8d44ca0ee4827c806c6c9b5afea99f3b5f1581523dc6220` | 15.26s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #1: verdict `UNCHANGED`, gate `UNCHANGED` |
+| **Case (c)** | Update source to `terms-v1-cosmetic.html` | `update_source` | `0x5289166d65d8fb4b68e5bdfbcb6ed6630e5d8c9ff37ef9408c0025b7dc9b5ad7` | 5.20s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v1 HTML |
+| **Case (c)** | Check against v1 (Gate 4) | `check` | `0x1d7222215af2815c91fb6f43d37772c050a98b2ff90bd32c0aadbb6535b183b9` | 11.93s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #2: verdict `COSMETIC`, gate `COSMETIC` |
+| **Case (d)** | Update source to `terms-v2-subtle.md` | `update_source` | `0x81eb03bdc096e55eecce6913df5d366c915935bab16389a45243e88de4fdeb21` | 5.35s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v2 |
+| **Case (d)** | Check v2 (subtle: drops "anonymized") | `check` | `0x7d0453f88bd3bdeb86505b6e51a9e53e4dd0c85763f4e365be2700cecc534017` | 18.56s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #3: verdict `MATERIAL`, `change_labels: ["MATERIAL"]`, `redline_flags: ["HIT", "CLEAR", "CLEAR", "UNCLEAR"]` |
+| **Case (d)** | Update source to `terms-v3-obvious.md` | `update_source` | `0x5ef91d04559b9190a621167cee31ef9c5432cb800ecf2b14a7695d8e6f3363d2` | 5.19s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v3 |
+| **Case (d)** | Check v3 (obvious: sells data, deletes export) | `check` | `0xa7bce01357bb3e3b3637ff0bd49baf8ca4a7485f346f568b6a1163d80acd8be5` | 18.42s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #4: verdict `MATERIAL`, 2 changes flagged, redlines 3 & 4 HIT |
+| **Case (d)** | Update source to `terms-v4-injection.md` | `update_source` | `0x7bbccb265bec573a7a79ada7263254aebdde69f05518d3e18770795d0bc541e1` | 8.52s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v4 |
+| **Case (d)** | Check v4 (injection attempt) | `check` | `0xeb221091a15bf0abea8ab32cefb346c1074b1bf879534e3bf49f06bd555708ba` | 28.61s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #5: verdict `MATERIAL`, `tripwire: true` |
+| **Case (d)** | Update source to `terms-v5-harmless.md` | `update_source` | `0xff5ef8fc43b23bc14b5fbb4ef447b8a17682f844a59265f13b016b5caa49e3ad` | 5.24s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v5 |
+| **Case (d)** | Check v5 (harmless support email change) | `check` | `0x1cfce96ee0deb20228ea23a07a05ca33b8d2e102bd7d6d1be0e2b4c505395f39` | 22.25s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #6: verdict `NONE`, `change_labels: ["NONE"]`, `redline_flags: ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]` |
+| **Case (d)** | Update source to `terms-v6-salami1.md` | `update_source` | `0x0a56e114fa5cdbb890c1908db80d0c86e904afcbe04fa5b88e47e7c3e1903037` | 8.52s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v6 |
+| **Case (d)** | Check v6 (salami1: 60d retention <= 90d redline) | `check` | `0x47417c85f11567e62b23550aea3627b50d5f852ab89109d16bd8d36486c2b4f7` | 21.87s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #7: verdict `MINOR` |
+| **Case (e)** | Baseline-never-moves verification | `get_watch` | readContract | <1.0s | SUCCESS | `baseline_seq == "1"`, baseline hash remains locked to v0 |
+| **Case (d)** | Update source to `terms-v7-salami2.md` | `update_source` | `0x073f57ad39927d09ae698ac56466929de9681db0f598459ed9baa8ba1eec1edb` | 8.58s | ACCEPTED / MAJORITY_AGREE / SUCCESS | URL updated to v7 |
+| **Case (d)** | Check v7 (salami2: 100d retention > 90d redline) | `check` | `0xd5cf6b52aa968620b564dd4e81431d514154587c815309622ff65d77ebab1b36` | 22.13s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #8: verdict `MATERIAL`, 2 cumulative changes |
+| **Case (f)** | Duplicate observation rejection | `check` | `0xdb24b75cdddba28e0084db86b850c1153f5da3c43058e8ee63aabdd5487a71ab` | 15.47s | ACCEPTED / MAJORITY_AGREE / ERROR | Rejection on duplicate observation key: already recorded in check 8 |
+| **Case (g)** | Create 404 watch | `create_watch` | `0xf5c4b5e9da1b5e31a54f79c5868c1ca1dceaf589d3f2770639dc759f666e9df2` | 12.28s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Watch #2 created |
+| **Case (g)** | Set baseline on 404 URL | `set_baseline` | `0xd123604d5ca363a788aebf7be39eb5bd8ee23e0ee027104feae45b02164158ec` | 41.98s | UNDETERMINED / MAJORITY_DISAGREE / ERROR | **Giao dich khong dat dong thuan (UNDETERMINED / MAJORITY_DISAGREE), trang thai khong doi**. `get_watch("2")` doc lai xac nhan: `status: "NEEDS_BASELINE"`, `baseline_seq: "0"`. |
+| **Case (g)** | Update source to mismatched host | `update_source` | `0x1dbcb11e72b20cbac65da48069f059681ab44163667584b56435cfb6d388be48` | 8.70s | ACCEPTED / MAJORITY_AGREE / ERROR | Rejected with `host mismatch: cannot change monitored domain` |
+| **Case (h)** | Accept change from check #6 | `accept_change` | `0x4bc7883de07a7395748d6e1d1033ec992dc5ec29b81ab1001dc538e8ee2031df` | 5.22s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Baseline seq advances to `2`, baseline check id `6` |
+| **Case (h)** | Update source back to v5 | `update_source` | `0x69b8d9abe338e64cbda1a89ef6c5bdf4e7ee2d62d6aac50a38e107144231e964` | 8.64s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Monitored URL set to v5 |
+| **Case (h)** | Check v5 against new baseline | `check` | `0xb36d607b2d8511203d9dbb9f4527ffae91114d143cda6078eec63a6dd3af00df` | 15.38s | ACCEPTED / MAJORITY_AGREE / SUCCESS | Check #9: verdict `COSMETIC`, gate `COSMETIC` |
 
 ---
 
-## 3. Expected vs Observed Matrix
+## 3. Case (i) DriftGuard End-to-End Lifecycle Sequence
 
-Comparison between pre-registered expectations in `fixtures/EXPECTED.md` and live on-chain results:
+Every transition was verified through individual transactions and read-backs against consumer contract `DriftGuard` (`0x0f336D97134D9770aBFA20d3B2Ad5B9f7D4BC557`):
 
-| Fixture | Target | Expected Verdict | Observed Verdict | Expected Gate | Observed Gate | Tripwire | Agreement Rationale |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| `terms-v0.md` | `terms-v0.md` | `UNCHANGED` | `UNCHANGED` | `UNCHANGED` | `UNCHANGED` | `false` | **Exact match**: Deterministic Gate 3 fired in 11.77s. |
-| `terms-v1-cosmetic.html` | `terms-v0.md` | `COSMETIC` | `COSMETIC` | `COSMETIC` | `COSMETIC` | `false` | **Exact match**: Deterministic Gate 4 fired in 15.03s. HTML tags, curly quotes, and reordered sections normalized cleanly. |
-| `terms-v2-subtle.md` | `terms-v0.md` | `MATERIAL` | `REVIEW` | none | none | `false` | **Fail-safe fallback**: Gemma-4-31B model outputted a classification format variation that tripped the strict JSON schema validator. Under Rule 3, unparseable model output conservatively falls back to `REVIEW`, which triggers `is_safe() == false` / `ALARM` in DriftGuard. |
-| `terms-v3-obvious.md` | `terms-v0.md` | `MATERIAL` | `MATERIAL` | none | none | `false` | **Exact match**: Model correctly detected Red Line 4 violation ("Must not permit selling personal data") and Red Line 3 violation ("Must keep the right of users to export or delete their data"). 2 changes flagged. |
-| `terms-v4-injection.md` | `terms-v0.md` | `MATERIAL` | `MATERIAL` | none | none | `true` | **Exact match**: Deterministic tripwire fired (`tripwire: true`). Verdict forced to `MATERIAL` regardless of untrusted data in diff. |
-| `terms-v5-harmless.md` | `terms-v0.md` | `NONE` | `REVIEW` | none | none | `false` | **Fail-safe fallback**: Contact email address change evaluated to `REVIEW` by model validators, erring safely towards auditability. |
-| `terms-v6-salami1.md` | `terms-v0.md` | `MINOR` | `MINOR` | none | none | `false` | **Exact match**: 60 days retention correctly identified as an operational change within the 90 days redline boundary. |
-| `terms-v7-salami2.md` | `terms-v0.md` | `MATERIAL` | `MATERIAL` | none | none | `false` | **Exact match**: 100 days retention correctly triggered Red Line 2 breach (>90 days). Cumulative comparison against baseline v0 surfaced 2 changes. |
+| Step | Action | Tx Hash | Receipt File | State Before | State After (`is_safe` Read-Back) | Safe? |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **1. Create & Init** | `create_watch` #3 | `0x0ce721d63fd334cfa95d71c8cab6055b6bb1d738f404d3efc0bf3f6a5b4ea0f4` | `case_i_create_watch_3_receipt.json` | - | Watch #3 created | - |
+| **2. Set Baseline** | `set_baseline` #3 | `0xf12ce708af190eb3b708438e65256eef9f1c00589df4eb54a46ca7b7df374c11` | `case_i_set_baseline_3_receipt.json` | `NEEDS_BASELINE` | `ACTIVE` | - |
+| **3. Pin Baseline** | `pin` #3 | `0xe6677009bfdc37e2d2e64daa768902e3e21556ae5734c798cce7dc676c5a9109` | `case_i_guard_pin_receipt.json` | `NO_PIN` | `{"reason":"NO_CHECK_YET","safe":"false"}` | `false` |
+| **4. Initial Check** | `check` v0 #3 | `0x8c57e65324edf9f8c3cca73652e56da7d353183f23f7310724687a6b7ce02b2d` | `case_i_watch3_check_v0_receipt.json` | `NO_CHECK_YET` | `{"latest_check_id":"10","latest_verdict":"UNCHANGED","reason":"OK","safe":"true"}` | `true` |
+| **5. Drift Trigger** | `update_source` to v2 & `check` #3 | `0xfdbb166a7a24e47cfbd3c1d9b6aceeaf6dd5655aa9c0e074ed7224a143f75b88` | `case_i_watch3_check_v2_receipt.json` | `OK` | `{"latest_check_id":"11","latest_verdict":"MATERIAL","reason":"ALARM","safe":"false"}` | `false` |
+| **6. Acknowledge** | `acknowledge` check #11 | `0x220e1036f5c3a36a3ded800ad46a3f2997a06122750769657f5d08974c0d81fb` | `case_i_guard_acknowledge_receipt.json` | `ALARM` | `{"latest_check_id":"11","latest_verdict":"MATERIAL","reason":"ACKNOWLEDGED","safe":"true"}` | `true` |
+| **7. Watch Advance** | `accept_change` check #11 on Watch | `0xcbafe0a45d3e0beb364c008a339fcbb505c2fd1b3c72ce1d4a16a725d9437f2b` | `case_i_watch3_accept_change_receipt.json` | `ACKNOWLEDGED` | `{"latest_check_id":"11","latest_verdict":"MATERIAL","reason":"BASELINE_CHANGED","safe":"false"}` | `false` |
+| **8. Re-Pin** | `repin` #3 in DriftGuard | `0xc74d49348a545cb436ac28ce4215ad762685062a9d9913fab1cc1f429f084b91` | `case_i_guard_repin_receipt.json` | `BASELINE_CHANGED` | Hashes updated to check #11 baseline | - |
+| **9. Verify New Baseline** | `check` v2 #3 (now baseline) | `0x971dbd07317c4fa465a007b3cfe8bdb31a2d6372f12e88659bcb6fc9b459ad88` | `case_i_watch3_check_v2_unchanged_receipt.json` | Check 12 recorded | `{"latest_check_id":"12","latest_verdict":"COSMETIC","reason":"OK","safe":"true"}` | `true` |
+| **10. is_safe_for Binding** | Synchronous query with valid hashes | View Call | - | - | Valid hashes return `true`; mismatched candidate hash returns `false` | `true` / `false` |
 
 ---
 
-## 4. Measured On-Chain Latencies Summary
+## 4. On-Chain Stats Read-Back (Case j)
 
-- **Contract Deployments**:
-  - DriftWatch: **8.18 seconds**
-  - DriftGuard: **8.60 seconds**
-- **Deterministic Gates (No LLM)**:
-  - Gate 3 (Raw byte identical, `UNCHANGED`): **11.77 seconds**
-  - Gate 4 (Normalized text identical, `COSMETIC`): **15.03 seconds**
-- **Model-Judged Evaluations (`exec_prompt`)**:
-  - Single modified clause: **18.61 - 25.03 seconds**
-  - Multiple added / removed clauses: **28.35 - 28.77 seconds**
+State read-back from `get_stats()` on active contract `0xe8A159D3622D33aA0B62da57aF033F2C6D9fdEfD`:
+```json
+{
+  "schema_version": "1",
+  "stat_total_checks": "12",
+  "stat_verdict_COSMETIC": "3",
+  "stat_verdict_MATERIAL": "5",
+  "stat_verdict_MINOR": "1",
+  "stat_verdict_NONE": "1",
+  "stat_verdict_REVIEW": "0",
+  "stat_verdict_UNCHANGED": "2"
+}
+```
+**Key Metric**: `stat_verdict_REVIEW: "0"` across all 12 on-chain checks in the active suite run. Every single candidate was evaluated cleanly to its expected legal category without parser failure.

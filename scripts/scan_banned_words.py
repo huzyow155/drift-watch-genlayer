@@ -5,6 +5,7 @@ import sys
 BANNED_PATTERNS = [
     (r'\bcryptographic\s+proof\b', 'cryptographic proof'),
     (r'\btamper-?proof\b', 'tamper-proof'),
+    (r'\btampered\b', 'tampered'),
     (r'\bbytecode\b', 'bytecode'),
     (r'\btestnet\b', 'testnet'),
     (r'\bunanimous(ly)?\b', 'unanimous'),
@@ -40,6 +41,12 @@ def scan():
                     # Check 'live' in docs/markdown (must write Studionet or Preview instead of live testnet/live network)
                     if f.endswith('.md') and re.search(r'\blive\s+(network|mainnet|testnet|system|mode|environment)\b', line, re.IGNORECASE):
                         violations.append((rel_path, line_idx, 'live network/system', line.strip()))
+
+                    if f.endswith('.md') and re.search(r'^\s*#+\s*.*\bLive\b', line):
+                        violations.append((rel_path, line_idx, 'Live in heading/title', line.strip()))
+
+                    if f.endswith('.md') and re.search(r'\blive\s+evidence\b', line, re.IGNORECASE):
+                        violations.append((rel_path, line_idx, 'live evidence', line.strip()))
 
                     for pat, name in BANNED_PATTERNS:
                         m = re.search(pat, line, re.IGNORECASE)
