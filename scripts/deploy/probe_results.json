@@ -1,0 +1,185 @@
+{
+  "contractAddress": "0x980c01c81E6593E62582a2f08C6Ee2E6023257D1",
+  "deployTxHash": "0x528abf79f9443a0dbe3b29e59042aab539ba758d421bde2456f5c87e5f5e8877",
+  "deployLatency": "6.51",
+  "codeSha256": "bfee45cbeb5e6dada276d0a7169eb6d8d393717ce9d916ffedb76c2b10b3423b",
+  "sender": "0x68aF05b60FE48913A6eE838A28479caD161e8EF9",
+  "views": {
+    "senderView": "0x68aF05b60FE48913A6eE838A28479caD161e8EF9",
+    "boolView": true,
+    "strView": "studionet_probe_ok",
+    "listView": [
+      "v0",
+      "v1",
+      "v2"
+    ]
+  },
+  "transactions": [
+    {
+      "action": "deploy_probe",
+      "txHash": "0x528abf79f9443a0dbe3b29e59042aab539ba758d421bde2456f5c87e5f5e8877",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "latency_seconds": "6.51"
+    },
+    {
+      "action": "imports_and_storage",
+      "txHash": "0x60769427fb9e62caf396fc9ae64de972cbff81a7e3a8bf08234b8bac0e6036f0",
+      "latency_seconds": "6.92",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "votes": {
+        "0x46f3e6B8E4D246a1c29E60Dece3709f4F115ab7F": "agree",
+        "0x91007854a2C4d4ec5e5148a94B15FdF0Ba013e7a": "agree",
+        "0xEcf0fed53b8baf5A6d376CFF2894aa66fcBCa13C": "agree",
+        "0xF9fbED11ED0C4BbcE404f9c48591233a688883B6": "idle",
+        "0xacb3A709E6212931De1a712a1710a6955c7d40c0": "idle"
+      }
+    },
+    {
+      "action": "web_fetch_md",
+      "txHash": "0xec9603eae07a8043126a3ea1d817d286a71d5558a599c9d797c9574b064e230a",
+      "latency_seconds": "11.64",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "votes": {
+        "0x02282326D058fE2d889F41BF01E14A72D800fa6F": "agree",
+        "0x044f5Cb4DB97843236A9ee36BBE6bA2CE827DEf5": "idle",
+        "0x6BCDDf292694Ec8AA930A53812DbBB546731bC17": "idle",
+        "0x84b5C0320Cf213d1e0F4313aD46dBde0cBA3a48b": "agree",
+        "0xF9fbED11ED0C4BbcE404f9c48591233a688883B6": "agree"
+      }
+    },
+    {
+      "action": "web_fetch_html",
+      "txHash": "0xf8265711c2b006162137c870d3048d48a000bee6b5578ba245034746c30c2181",
+      "latency_seconds": "11.85",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "votes": {
+        "0x02282326D058fE2d889F41BF01E14A72D800fa6F": "agree",
+        "0x6BCDDf292694Ec8AA930A53812DbBB546731bC17": "idle",
+        "0xEcf0fed53b8baf5A6d376CFF2894aa66fcBCa13C": "agree",
+        "0xF9fbED11ED0C4BbcE404f9c48591233a688883B6": "agree",
+        "0xbfC623617377D02992F9c125CBBC3Bb1Cb3c9E4D": "idle"
+      }
+    },
+    {
+      "action": "web_fetch_404",
+      "txHash": "0xba7db5b6cbb6cf48491d9a85f97826e49549335ffe3c8d5b16c4b3c87870190c",
+      "latency_seconds": "8.40",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "votes": {
+        "0x1b170f7676410646709fDF16A279Ae4f8c4dC7AE": "agree",
+        "0x7405D7e5f9e1016ed13847B93Bcf7D8553688Ec9": "agree",
+        "0x7902A9B1893526Db7C3cdCf9CAb88F9B408890cC": "agree",
+        "0x91007854a2C4d4ec5e5148a94B15FdF0Ba013e7a": "idle",
+        "0xacb3A709E6212931De1a712a1710a6955c7d40c0": "agree"
+      }
+    },
+    {
+      "action": "byte_stability_5",
+      "txHash": "0x2676a37abba7d455fa78b44c2e28eaab663972842598a75c7554b955bd8cf313",
+      "latency_seconds": "12.50",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "votes": {
+        "0x46f3e6B8E4D246a1c29E60Dece3709f4F115ab7F": "idle",
+        "0x4807398866238CaF8910A9c4Fe7eB444d2Ed144A": "agree",
+        "0x7405D7e5f9e1016ed13847B93Bcf7D8553688Ec9": "agree",
+        "0xbfC623617377D02992F9c125CBBC3Bb1Cb3c9E4D": "agree",
+        "0xd7dfBe383b6421cdE13b94ED62f81772156B4a43": "idle"
+      }
+    },
+    {
+      "action": "web_fetch_public",
+      "txHash": "0x11cac5531fa11e8abbc9ba0507398d21e94548f487d2f96b8bf6bc62fbf39682",
+      "latency_seconds": "11.72",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "votes": {
+        "0x044f5Cb4DB97843236A9ee36BBE6bA2CE827DEf5": "agree",
+        "0x1b170f7676410646709fDF16A279Ae4f8c4dC7AE": "idle",
+        "0x7902A9B1893526Db7C3cdCf9CAb88F9B408890cC": "agree",
+        "0xacb3A709E6212931De1a712a1710a6955c7d40c0": "idle",
+        "0xbbA7b5E4630DC0db7f98939Db9bD8c47C5d7f0b8": "agree"
+      }
+    },
+    {
+      "action": "exec_prompt_20",
+      "txHash": "0x403a056e4b0f2175f926d7d79e358305140c688f832e1ecbb806f1243d98cf5e",
+      "latency_seconds": "28.25",
+      "status_name": "ACCEPTED",
+      "result_name": "MAJORITY_AGREE",
+      "leader_result": "SUCCESS",
+      "votes": {
+        "0x02282326D058fE2d889F41BF01E14A72D800fa6F": "idle",
+        "0x60929ddB1a5E6Db6f1E198038E0D56547c10f275": "agree",
+        "0x7405D7e5f9e1016ed13847B93Bcf7D8553688Ec9": "idle",
+        "0x7902A9B1893526Db7C3cdCf9CAb88F9B408890cC": "agree",
+        "0xF9fbED11ED0C4BbcE404f9c48591233a688883B6": "agree"
+      }
+    }
+  ],
+  "envInfo": {
+    "ip": "192.168.1.1",
+    "parsed_netloc": "acme.example:443",
+    "parsed_scheme": "https",
+    "payload_len": 60000,
+    "regex_clean": "Hello World 123",
+    "sender": "0x68aF05b60FE48913A6eE838A28479caD161e8EF9",
+    "sha256": "a6251b42b6ccdbfb6b1df2d887b2f6ed5db17c56469f9bc1a9040ae8a732db58",
+    "unescaped": "\"hello & world\""
+  },
+  "mdResult": {
+    "length": 1500,
+    "preview": "# Terms of Service\nLast updated: January 1, 2026. Effective as of January 1, 2026. Copyright 2026 Acme Notes Inc. All ri",
+    "sha256": "ae41899b3f2d782dba053de7360bd2679639f03cd8a012c48b6d1a9c6d0ce7c9",
+    "status": 200
+  },
+  "htmlResult": {
+    "length": 2014,
+    "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>ACME NOTES TERMS</title>\n<style>\nbody { font-famil",
+    "sha256": "708d368f8f190920de854a2a2aaa458bfb26f2b361fe99d32168897d29a38a1a",
+    "status": 200
+  },
+  "notFoundResult": {
+    "length": 14,
+    "preview": "404: Not Found",
+    "sha256": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "status": 404
+  },
+  "stabilityResult": {
+    "first_hash": "ae41899b3f2d782dba053de7360bd2679639f03cd8a012c48b6d1a9c6d0ce7c9",
+    "hashes": [
+      "ae41899b3f2d782dba053de7360bd2679639f03cd8a012c48b6d1a9c6d0ce7c9",
+      "ae41899b3f2d782dba053de7360bd2679639f03cd8a012c48b6d1a9c6d0ce7c9",
+      "ae41899b3f2d782dba053de7360bd2679639f03cd8a012c48b6d1a9c6d0ce7c9",
+      "ae41899b3f2d782dba053de7360bd2679639f03cd8a012c48b6d1a9c6d0ce7c9",
+      "ae41899b3f2d782dba053de7360bd2679639f03cd8a012c48b6d1a9c6d0ce7c9"
+    ],
+    "lengths": [
+      1500,
+      1500,
+      1500,
+      1500,
+      1500
+    ],
+    "stable": true
+  },
+  "publicResult": {
+    "length": 577,
+    "preview": "<!doctype html><html lang=en><head><meta charset=utf-8><link rel=icon href=data:,><meta name=viewport content=\"width=dev",
+    "sha256": "25ddf2c883e0d1958ea971d279a7e4f0fd446724ee3db7db19dadabd4a62e484",
+    "status": 200
+  },
+  "promptResult": "{\"changes\": [\"NONE\"], \"redlines\": [\"CLEAR\"]}"
+}
