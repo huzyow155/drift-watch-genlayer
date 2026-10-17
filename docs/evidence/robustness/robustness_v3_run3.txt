@@ -1,0 +1,14 @@
+Fixture: v3 (terms-v3-obvious.md)
+Run: 3
+Tx Hash: 0x295ca8f4e1f5316677b8339e8d0820ee223c0fad4d35cc32b9c8c28f49435348
+Elapsed: 17.18s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-gpt-5-4
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL","MATERIAL"]
+Parsed Redlines: ["HIT","UNCLEAR","HIT","HIT"]
+
+--- RAW MODEL OUTPUT ---
+{"changes":["MATERIAL","MATERIAL"],"redlines":["HIT","UNCLEAR","HIT","HIT"]}

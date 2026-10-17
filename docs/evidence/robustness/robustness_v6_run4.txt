@@ -1,0 +1,14 @@
+Fixture: v6 (terms-v6-salami1.md)
+Run: 4
+Tx Hash: 0x5212b44915881540be3d300ce6c152c2e110d536f7ac47b204e299cf27ab2295
+Elapsed: 24.84s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-kimi
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MINOR
+Parsed Changes: ["MINOR"]
+Parsed Redlines: ["CLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MINOR"], "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]}

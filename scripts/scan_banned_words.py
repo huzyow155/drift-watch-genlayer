@@ -53,6 +53,24 @@ def scan():
                         if m:
                             violations.append((rel_path, line_idx, m.group(0), line.strip()))
     
+    # If extra file arguments provided (e.g. report.txt), scan them explicitly
+    for extra_file in sys.argv[1:]:
+        if os.path.exists(extra_file):
+            with open(extra_file, 'r', encoding='utf-8', errors='ignore') as fp:
+                for line_idx, line in enumerate(fp, 1):
+                    if re.search(r'\bfinalized\b', line, re.IGNORECASE) and 'status_name' not in line and 'FINALIZED' not in line:
+                        violations.append((extra_file, line_idx, 'finalized outside status_name', line.strip()))
+                    if re.search(r'\blive\s+(network|mainnet|testnet|system|mode|environment)\b', line, re.IGNORECASE):
+                        violations.append((extra_file, line_idx, 'live network/system', line.strip()))
+                    if re.search(r'^\s*#+\s*.*\bLive\b', line):
+                        violations.append((extra_file, line_idx, 'Live in heading/title', line.strip()))
+                    if re.search(r'\blive\s+evidence\b', line, re.IGNORECASE):
+                        violations.append((extra_file, line_idx, 'live evidence', line.strip()))
+                    for pat, name in BANNED_PATTERNS:
+                        m = re.search(pat, line, re.IGNORECASE)
+                        if m:
+                            violations.append((extra_file, line_idx, m.group(0), line.strip()))
+
     if violations:
         print(f"FAILED: Found {len(violations)} banned word violations:")
         for path, line_no, matched, text in violations:

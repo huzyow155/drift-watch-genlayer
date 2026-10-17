@@ -1,0 +1,14 @@
+Fixture: v2 (terms-v2-subtle.md)
+Run: 3
+Tx Hash: 0x0607952c1ca947e7e83b3cfa9f49f530f7e632ed76aa8b04c59f884f4328ed04
+Elapsed: 9.56s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-qwen
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL"]
+Parsed Redlines: ["HIT","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MATERIAL"], "redlines": ["HIT", "CLEAR", "CLEAR", "CLEAR"]}

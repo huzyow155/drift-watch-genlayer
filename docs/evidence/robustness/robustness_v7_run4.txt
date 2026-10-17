@@ -1,0 +1,14 @@
+Fixture: v7 (terms-v7-salami2.md)
+Run: 4
+Tx Hash: 0x0ef536e9889e0061b8a1f5943a9ca81e4cc9110ca5df93cdcee9e3cd62d64f06
+Elapsed: 13.26s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-minimax
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL","MATERIAL"]
+Parsed Redlines: ["CLEAR","HIT","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MATERIAL", "MATERIAL"], "redlines": ["CLEAR", "HIT", "CLEAR", "CLEAR"]}

@@ -24,8 +24,10 @@ This document provides a comprehensive, honest catalog of known technical and ar
 ## 5. Scope of Semantic Judgment & Change Thresholds
 - **Threshold on Changed Clauses**: If a diff exceeds 12 modified, added, or removed clauses, the contract automatically returns `REVIEW`. Complete document overhauls or massive rewrites cannot be evaluated reliably in a single consensus call and require human review.
 - **Not Legal Advice**: Drift Watch does not provide legal opinions or determine statutory compliance. It checks whether detected textual diffs violate specific, user-defined red lines in plain English.
-- **LLM Variance on Borderline Phrasing**: While consensus requires majority agreement on a single canonical verdict string (`<VERDICT>|<norm_hash16>`), subtle edge-case phrasing may occasionally generate divergence or require `REVIEW`.
-- **Subtle One-Word Modifications & Parser Fail-Safe**: Với ca tinh vi chỉ đổi 1 từ (chẳng hạn bỏ chữ "anonymized"), kết quả phụ thuộc vào nhãn do mô hình ngôn ngữ trả về; khi nhãn không parse được (ví dụ do mô hình trả về mảng object thay vì mảng chuỗi phẳng), hệ thống tự động trả về `REVIEW` (an toàn theo nguyên tắc fail-safe, nhưng gây nhiều báo động cho người tích hợp).
+- **Subtle Modifications & Model Output Shape Variance**:
+  - Với ca tinh vi chỉ đổi 1 từ (chẳng hạn bỏ chữ "anonymized") hoặc diff nhiều mệnh đề, kết quả phân loại phụ thuộc vào nhãn do mô hình ngôn ngữ trả về.
+  - Theo kết quả đo lường độ bền thống kê trên 35 lượt probe thực tế trên Studionet (`docs/ROBUSTNESS.md`), tỷ lệ parse nhãn thành công đạt **97.14%** (34/35 lượt). Trong 1 lượt chạy ca `v3` dưới chính sách `policy:prd-minimax`, mô hình nhân đôi danh sách redlines (8 phần tử thay vì 4).
+  - Khi mô hình trả về sai định dạng cấu trúc hoặc độ dài mảng không khớp, bộ parser nghiêm ngặt từ chối toàn bộ và trả về `REVIEW`: *when the model returns the wrong shape, the contract returns REVIEW (safe but noisy)*. Hợp đồng kiên quyết không nới lỏng parser để tránh báo động giả an toàn (false negative).
 
 ## 6. Baseline Governance & DriftGuard Semantics
 - **Owner Controls Baseline Updates**: The watch creator controls `accept_change`. The baseline does not advance automatically. This design guarantees that incremental ("salami-slice") edits accumulate against the original accepted baseline rather than evading detection across small hops.

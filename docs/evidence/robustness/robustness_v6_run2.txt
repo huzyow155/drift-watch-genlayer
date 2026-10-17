@@ -1,0 +1,17 @@
+Fixture: v6 (terms-v6-salami1.md)
+Run: 2
+Tx Hash: 0x2b90eafb4ea3946fe7a2a24c2433a6e920b1970f9177ebfb2818e80288d2624a
+Elapsed: 13.44s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-deepseek
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MINOR
+Parsed Changes: ["MINOR"]
+Parsed Redlines: ["CLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{
+    "changes": ["MINOR"],
+    "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]
+}

@@ -26,9 +26,7 @@ Rule: Maximum 2 prompt/parser iterations allowed.
     - In `parse_labels`: Unified strictly on `{"changes", "redlines"}` with `len(keys) == 2`.
   - `tests/test_layer1_pure.py`: Added `test_real_raw_fixtures_rejected_and_accepted` using real captured outputs, and `test_parse_labels_fuzz_5000_seeded` (seed `987654`) against an independent reference oracle.
 
-- **Studionet Probe Results on Iteration 1**:
-  - `v2` run 1: `raw = "```json\n{"changes": ["MATERIAL"], "redlines": ["HIT", "CLEAR", "CLEAR", "UNCLEAR"]}\n```"` -> parsed `ch=['MATERIAL']`, `rl=['HIT', 'CLEAR', 'CLEAR', 'UNCLEAR']` (verdict: `MATERIAL`)
-  - `v2` run 2: `raw = "{"changes": ["MATERIAL"], "redlines": ["HIT", "CLEAR", "CLEAR", "CLEAR"]}"` -> parsed `ch=['MATERIAL']`, `rl=['HIT', 'CLEAR', 'CLEAR', 'CLEAR']` (verdict: `MATERIAL`)
-  - `v5` run 1: `raw = "```json\n{"changes": ["NONE"], "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]}\n```"` -> parsed `ch=['NONE']`, `rl=['CLEAR', 'CLEAR', 'CLEAR', 'CLEAR']` (verdict: `NONE`)
-  - `v5` run 2: `raw = "{"changes": ["NONE"], "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]}"` -> parsed `ch=['NONE']`, `rl=['CLEAR', 'CLEAR', 'CLEAR', 'CLEAR']` (verdict: `NONE`)
-  - Previously passing cases (`v3`, `v4`, `v6`, `v7`): all preserved, schema remains strictly flat string arrays.
+- **Validation on Studionet**:
+  - The 4 exploratory runs initially executed via `test_improved_prompt.js` did not persist raw receipt JSONs to disk and have been removed from this log in accordance with evidence audit standards.
+  - Comprehensive, reproducible statistical robustness evidence with full persisted receipt JSONs and raw model outputs across 35 live on-chain runs is documented in [`docs/ROBUSTNESS.md`](ROBUSTNESS.md) and [`docs/evidence/robustness/`](../docs/evidence/robustness/).
+  - Real active contract execution across all cases (a)-(k) with full receipts is archived in [`docs/evidence_v2/`](../docs/evidence_v2/).

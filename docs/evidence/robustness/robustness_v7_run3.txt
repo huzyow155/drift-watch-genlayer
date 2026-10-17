@@ -1,0 +1,14 @@
+Fixture: v7 (terms-v7-salami2.md)
+Run: 3
+Tx Hash: 0x93c368777cc2bc1ce5ea0c35fd48251b948c63162ed2267395459ffb025a6d18
+Elapsed: 13.32s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: google/gemini-3-flash-preview
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL","MINOR"]
+Parsed Redlines: ["CLEAR","HIT","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MATERIAL", "MINOR"], "redlines": ["CLEAR", "HIT", "CLEAR", "CLEAR"]}

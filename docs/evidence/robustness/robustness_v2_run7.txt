@@ -1,0 +1,19 @@
+Fixture: v2 (terms-v2-subtle.md)
+Run: 7
+Tx Hash: 0xc0eaf5ea873245ed47ce081e30db1c12dfc12c625af1a3abc7c90ff2f31a3dc8
+Elapsed: 9.56s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-mistral
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL"]
+Parsed Redlines: ["HIT","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+```json
+{
+  "changes": ["MATERIAL"],
+  "redlines": ["HIT", "CLEAR", "CLEAR", "CLEAR"]
+}
+```

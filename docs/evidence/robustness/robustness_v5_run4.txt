@@ -1,0 +1,14 @@
+Fixture: v5 (terms-v5-harmless.md)
+Run: 4
+Tx Hash: 0xafa1640fd53a7798e1baad5fe9693937f0b7a401b8e7ff001b6d8afc954d5d36
+Elapsed: 13.30s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-minimax
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: NONE
+Parsed Changes: ["NONE"]
+Parsed Redlines: ["CLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["NONE"], "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]}

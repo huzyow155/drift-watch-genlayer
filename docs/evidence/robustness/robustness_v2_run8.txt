@@ -1,0 +1,14 @@
+Fixture: v2 (terms-v2-subtle.md)
+Run: 8
+Tx Hash: 0x76ac1dfe367cea2f9d120b81e9dd6bc7b0632f52b269a6cb2043ad39064d1476
+Elapsed: 14.44s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-grok
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MINOR
+Parsed Changes: ["MINOR"]
+Parsed Redlines: ["UNCLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MINOR"], "redlines": ["UNCLEAR", "CLEAR", "CLEAR", "CLEAR"]}

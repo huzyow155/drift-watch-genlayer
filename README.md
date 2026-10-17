@@ -98,6 +98,19 @@ npm run scan:secrets
 
 Full on-chain receipts and execution evidence for all test cases (a) through (k) are documented in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
 
+## Known Limitation: Model Output Shape
+
+In non-deterministic contract calls, GenLayer validators execute LLMs using diverse underlying model policies (such as `policy:prd-minimax`, `openai/gpt-5.4`, `anthropic/claude-sonnet-4.6`, `google/gemini-3-flash-preview`). While deterministic gates handle byte-identical and normalized cosmetic changes, evaluated semantic checks rely on strict JSON schema extraction (`parse_labels`).
+
+A statistical robustness evaluation across 35 on-chain probe transactions ([`docs/ROBUSTNESS.md`](docs/ROBUSTNESS.md)) measured:
+- **Overall parse success rate**: **97.14%** (34 / 35 runs parsed strictly).
+- **Subtle edit (`v2`)**: 100.0% (10 / 10 runs parsed cleanly).
+- **Harmless edit (`v5`)**: 100.0% (10 / 10 runs parsed cleanly).
+- **Salami regressions (`v6`, `v7`)**: 100.0% (10 / 10 runs parsed cleanly).
+- **Obvious edit (`v3`)**: 80.0% (4 / 5 runs parsed cleanly; 1 run under `policy:prd-minimax` duplicated the redlines array).
+
+**Fail-safe behavior**: When a model outputs an unparseable format (such as nested dictionaries or duplicated list lengths), the contract's strict parser deliberately rejects the output and falls back to `REVIEW`. This triggers an alarm state in `DriftGuard` (`is_safe() == false`), ensuring that model hallucinations or formatting deviations can never create false-negative security clearances (safe but noisy).
+
 ## License
 
 MIT License - Copyright (c) 2026 Hyper (huzyow155). See [LICENSE](LICENSE) for details.

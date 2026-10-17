@@ -33,7 +33,7 @@ Fetches the initial page content, extracts clauses, and anchors the baseline.
 - **Consensus Return**: `"BASELINE|<norm_hash16>"`.
 
 #### `check(watch_id: str) -> str`
-Executes an on-demand check of the live page against the pinned baseline and user red lines.
+Executes an on-demand check of the current page against the pinned baseline and user red lines.
 - **Access**: Open to any caller.
 - **Returns**: Canonical verdict string (`"UNCHANGED"`, `"COSMETIC"`, `"NONE"`, `"MINOR"`, `"MATERIAL"`, `"REVIEW"`).
 
@@ -127,6 +127,23 @@ Full check record with deterministic changes and leader-reported flags:
 #### `is_alarm_for(watch_id: str, baseline_norm_hash: str, norm_hash: str) -> bool`
 Returns `true` if and only if a stored check exists for that exact baseline and candidate hash with verdict `MATERIAL` or `REVIEW`.
 
+#### `get_stats() -> str`
+Returns contract-wide operational counters across all checks evaluated to date.
+Output keys:
+- `schema_version`: String `"1"`
+- `stat_total_checks`: String integer count of all completed checks
+- `stat_verdict_UNCHANGED`: String integer count of checks evaluated to `UNCHANGED`
+- `stat_verdict_COSMETIC`: String integer count of checks evaluated to `COSMETIC`
+- `stat_verdict_NONE`: String integer count of checks evaluated to `NONE`
+- `stat_verdict_MINOR`: String integer count of checks evaluated to `MINOR`
+- `stat_verdict_MATERIAL`: String integer count of checks evaluated to `MATERIAL`
+- `stat_verdict_REVIEW`: String integer count of checks evaluated to `REVIEW`
+
+Real call example from active deployment (`0xe8A159D3622D33aA0B62da57aF033F2C6D9fdEfD`):
+```json
+{"schema_version":"1","stat_total_checks":"12","stat_verdict_COSMETIC":"3","stat_verdict_MATERIAL":"5","stat_verdict_MINOR":"1","stat_verdict_NONE":"1","stat_verdict_REVIEW":"0","stat_verdict_UNCHANGED":"2"}
+```
+
 ---
 
 ## 3. DriftGuard Public Interface
@@ -138,7 +155,7 @@ Returns `true` if and only if a stored check exists for that exact baseline and 
 
 ### Views
 #### `is_safe(pinner: str, watch_id: str) -> str`
-Computes live safety status by evaluating the pinned hashes against `DriftWatch.get_status(watch_id)`:
+Computes current safety status by evaluating the pinned hashes against `DriftWatch.get_status(watch_id)`:
 ```json
 {
   "latest_check_id": "1",

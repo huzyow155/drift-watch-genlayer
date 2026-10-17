@@ -1,0 +1,14 @@
+Fixture: v7 (terms-v7-salami2.md)
+Run: 2
+Tx Hash: 0xf5f759c234f4ed77250053ca89571519d242d82e5c2e5e0f9ae7383b67a86f03
+Elapsed: 13.26s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: openai/gpt-5.4
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL","MINOR"]
+Parsed Redlines: ["CLEAR","HIT","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes":["MATERIAL","MINOR"],"redlines":["CLEAR","HIT","CLEAR","CLEAR"]}

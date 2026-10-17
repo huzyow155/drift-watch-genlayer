@@ -1,0 +1,14 @@
+Fixture: v7 (terms-v7-salami2.md)
+Run: 5
+Tx Hash: 0x51a397dc1843f807ac18df410ae78a325c4115ac17a7aaf8b0016b4832a70a08
+Elapsed: 17.20s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-qwen
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL","MINOR"]
+Parsed Redlines: ["CLEAR","HIT","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MATERIAL", "MINOR"], "redlines": ["CLEAR", "HIT", "CLEAR", "CLEAR"]}

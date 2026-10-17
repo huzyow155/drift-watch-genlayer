@@ -1,0 +1,16 @@
+Fixture: v5 (terms-v5-harmless.md)
+Run: 10
+Tx Hash: 0xad96e6092182636629bbc9658f2e27296d4bb7c1da1d5f1bd733a4a074a5064c
+Elapsed: 13.38s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-sonnet
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: NONE
+Parsed Changes: ["NONE"]
+Parsed Redlines: ["CLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+```json
+{"changes": ["NONE"], "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]}
+```

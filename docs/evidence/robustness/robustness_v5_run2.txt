@@ -1,0 +1,16 @@
+Fixture: v5 (terms-v5-harmless.md)
+Run: 2
+Tx Hash: 0x6d2aebbf36b0d03680f7640e624571b85f651855fcc318b4462c5fc9beb4ae0f
+Elapsed: 17.20s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: anthropic/claude-sonnet-4.6
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: NONE
+Parsed Changes: ["NONE"]
+Parsed Redlines: ["CLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+```json
+{"changes": ["NONE"], "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]}
+```

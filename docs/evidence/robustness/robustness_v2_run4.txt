@@ -1,0 +1,14 @@
+Fixture: v2 (terms-v2-subtle.md)
+Run: 4
+Tx Hash: 0x5d429254ea0928553037e5b39bc1e4b38f68e8088426b3bdc799a81562218cb2
+Elapsed: 9.52s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-gemini
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL"]
+Parsed Redlines: ["HIT","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MATERIAL"], "redlines": ["HIT", "CLEAR", "CLEAR", "CLEAR"]}

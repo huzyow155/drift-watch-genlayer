@@ -1,0 +1,14 @@
+Fixture: v3 (terms-v3-obvious.md)
+Run: 2
+Tx Hash: 0x0db8c50b6e0883f7c28d64b613dd7f1edfa5f2bd9dd46069120e8a1562952abb
+Elapsed: 17.11s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-minimax
+Parse Result: FAILED
+Parse Reason: length mismatch: changes=2/2, redlines=8/4
+Evaluated Verdict: REVIEW
+Parsed Changes: []
+Parsed Redlines: []
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MATERIAL", "MATERIAL"], "redlines": ["HIT", "CLEAR", "CLEAR", "HIT", "CLEAR", "HIT", "CLEAR", "CLEAR"]}

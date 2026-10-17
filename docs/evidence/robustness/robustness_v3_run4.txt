@@ -1,0 +1,14 @@
+Fixture: v3 (terms-v3-obvious.md)
+Run: 4
+Tx Hash: 0x54296e6fcc6b2d16774c69fdbefd35ccd3ab1f11c0836f36ded6f0d3667afbf6
+Elapsed: 13.51s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: google/gemini-3-flash-preview
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL","MATERIAL"]
+Parsed Redlines: ["HIT","UNCLEAR","HIT","HIT"]
+
+--- RAW MODEL OUTPUT ---
+{"changes": ["MATERIAL", "MATERIAL"], "redlines": ["HIT", "UNCLEAR", "HIT", "HIT"]}

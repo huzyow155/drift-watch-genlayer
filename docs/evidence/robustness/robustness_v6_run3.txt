@@ -1,0 +1,14 @@
+Fixture: v6 (terms-v6-salami1.md)
+Run: 3
+Tx Hash: 0xd603cddedd0aa445c19fdede8460ce40d4fcd3215b0a8101a6b4ba343da89824
+Elapsed: 13.40s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: openai/gpt-5.4
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MINOR
+Parsed Changes: ["MINOR"]
+Parsed Redlines: ["CLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes":["MINOR"],"redlines":["CLEAR","CLEAR","CLEAR","CLEAR"]}

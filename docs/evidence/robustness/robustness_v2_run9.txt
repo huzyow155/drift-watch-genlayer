@@ -1,0 +1,17 @@
+Fixture: v2 (terms-v2-subtle.md)
+Run: 9
+Tx Hash: 0x9324abdd296f922e7de43d612b0cf62e233750668f81ac88f144ee51f57fad15
+Elapsed: 17.16s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-deepseek
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MATERIAL"]
+Parsed Redlines: ["HIT","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{
+  "changes": ["MATERIAL"],
+  "redlines": ["HIT", "CLEAR", "CLEAR", "CLEAR"]
+}

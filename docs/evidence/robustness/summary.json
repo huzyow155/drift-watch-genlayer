@@ -1,0 +1,397 @@
+{
+  "evaluatedAt": "2026-10-17T10:16:46.877Z",
+  "probeAddress": "0x43c882AA13699503Dfa7B0886e7F64fc92cf41DF",
+  "dwInstructionsSha256": "4247fb350186e33a4226a5f3beee0ca55d11743eacdcf5d88a8670c32a946522",
+  "totalRuns": 35,
+  "byFixture": {
+    "v2": {
+      "name": "terms-v2-subtle.md",
+      "totalRuns": 10,
+      "parseSuccessCount": 10,
+      "parseSuccessRatePct": "100.0",
+      "verdictDistribution": {
+        "MATERIAL": 9,
+        "MINOR": 1
+      },
+      "leaderModels": {
+        "policy:prd-grok": 2,
+        "policy:prd-minimax": 1,
+        "policy:prd-qwen": 1,
+        "policy:prd-gemini": 2,
+        "policy:prd-glm": 1,
+        "policy:prd-mistral": 1,
+        "policy:prd-deepseek": 1,
+        "openai/gpt-5.4": 1
+      },
+      "avgElapsedSeconds": "15.54",
+      "meetsThreshold90Pct": true,
+      "runs": [
+        {
+          "run": 1,
+          "txHash": "0x8842aa18a7ff2012a468fa9cf61e37f1a96eec4433ff704e2c10edf9e85b6540",
+          "elapsed": 18.55,
+          "leaderModel": "policy:prd-grok",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 2,
+          "txHash": "0x69490f5de71de7cee68fbb2ed1a5ff22149e2253c5e4802b6238fe654c1b3c6a",
+          "elapsed": 13.63,
+          "leaderModel": "policy:prd-minimax",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 3,
+          "txHash": "0x0607952c1ca947e7e83b3cfa9f49f530f7e632ed76aa8b04c59f884f4328ed04",
+          "elapsed": 9.56,
+          "leaderModel": "policy:prd-qwen",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 4,
+          "txHash": "0x5d429254ea0928553037e5b39bc1e4b38f68e8088426b3bdc799a81562218cb2",
+          "elapsed": 9.52,
+          "leaderModel": "policy:prd-gemini",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 5,
+          "txHash": "0xfaa4447f8c1f5da97d33725c77b566c839ff63332c7b2c8edd2379a2fe5735fc",
+          "elapsed": 32.44,
+          "leaderModel": "policy:prd-glm",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 6,
+          "txHash": "0xbf06906a1fe324e81da6b5e41b223245481957815d05c0cba548075126bc72d3",
+          "elapsed": 17.14,
+          "leaderModel": "policy:prd-gemini",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 7,
+          "txHash": "0xc0eaf5ea873245ed47ce081e30db1c12dfc12c625af1a3abc7c90ff2f31a3dc8",
+          "elapsed": 9.56,
+          "leaderModel": "policy:prd-mistral",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 8,
+          "txHash": "0x76ac1dfe367cea2f9d120b81e9dd6bc7b0632f52b269a6cb2043ad39064d1476",
+          "elapsed": 14.44,
+          "leaderModel": "policy:prd-grok",
+          "parseOk": true,
+          "verdict": "MINOR"
+        },
+        {
+          "run": 9,
+          "txHash": "0x9324abdd296f922e7de43d612b0cf62e233750668f81ac88f144ee51f57fad15",
+          "elapsed": 17.16,
+          "leaderModel": "policy:prd-deepseek",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 10,
+          "txHash": "0x783ce8c22214ba56544fd156cd7736e895c4d1314a6c7e4b8e19119be538a190",
+          "elapsed": 13.41,
+          "leaderModel": "openai/gpt-5.4",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        }
+      ]
+    },
+    "v5": {
+      "name": "terms-v5-harmless.md",
+      "totalRuns": 10,
+      "parseSuccessCount": 10,
+      "parseSuccessRatePct": "100.0",
+      "verdictDistribution": {
+        "NONE": 10
+      },
+      "leaderModels": {
+        "policy:prd-glm": 1,
+        "anthropic/claude-sonnet-4.6": 1,
+        "openai/gpt-5.4": 1,
+        "policy:prd-minimax": 1,
+        "policy:prd-gemini": 1,
+        "policy:prd-gpt-5-4": 1,
+        "policy:prd-sonnet": 2,
+        "policy:prd-grok": 1,
+        "policy:prd-deepseek": 1
+      },
+      "avgElapsedSeconds": "13.38",
+      "meetsThreshold90Pct": true,
+      "runs": [
+        {
+          "run": 1,
+          "txHash": "0x6901a65dd2e6b3451e6dad01ed8be30855512e299893029db4ec252e02b4851c",
+          "elapsed": 9.44,
+          "leaderModel": "policy:prd-glm",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 2,
+          "txHash": "0x6d2aebbf36b0d03680f7640e624571b85f651855fcc318b4462c5fc9beb4ae0f",
+          "elapsed": 17.2,
+          "leaderModel": "anthropic/claude-sonnet-4.6",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 3,
+          "txHash": "0x0e5d949ccd7d14adf96df501ca354bb7305ac8cd19e7313571463494a787ab30",
+          "elapsed": 13.32,
+          "leaderModel": "openai/gpt-5.4",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 4,
+          "txHash": "0xafa1640fd53a7798e1baad5fe9693937f0b7a401b8e7ff001b6d8afc954d5d36",
+          "elapsed": 13.3,
+          "leaderModel": "policy:prd-minimax",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 5,
+          "txHash": "0xad9d3f9124ac7a77f8a3529c80584bd7c3fddb5fd56659ea8a3d2e45cf00cf25",
+          "elapsed": 13.4,
+          "leaderModel": "policy:prd-gemini",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 6,
+          "txHash": "0x09d25f21b2ef26a53917033eef563c15fa6ade331f98b5a08bd3e056efd720c0",
+          "elapsed": 17.11,
+          "leaderModel": "policy:prd-gpt-5-4",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 7,
+          "txHash": "0x36ce95e6a4c9ac96b76e8ffe6b49fb76b278be96a252fa265d5a347f18dc7d0a",
+          "elapsed": 13.43,
+          "leaderModel": "policy:prd-sonnet",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 8,
+          "txHash": "0x2c57abe2b42e169297420b814e3c2bbf8a2d16efaee8b92ab639aafa453a4b3d",
+          "elapsed": 9.69,
+          "leaderModel": "policy:prd-grok",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 9,
+          "txHash": "0xdf3e858d641a4cc239c4978a36f05ae9f0259a310b74f30b3785edc543eae07a",
+          "elapsed": 13.56,
+          "leaderModel": "policy:prd-deepseek",
+          "parseOk": true,
+          "verdict": "NONE"
+        },
+        {
+          "run": 10,
+          "txHash": "0xad96e6092182636629bbc9658f2e27296d4bb7c1da1d5f1bd733a4a074a5064c",
+          "elapsed": 13.38,
+          "leaderModel": "policy:prd-sonnet",
+          "parseOk": true,
+          "verdict": "NONE"
+        }
+      ]
+    },
+    "v3": {
+      "name": "terms-v3-obvious.md",
+      "totalRuns": 5,
+      "parseSuccessCount": 4,
+      "parseSuccessRatePct": "80.0",
+      "verdictDistribution": {
+        "MATERIAL": 4,
+        "REVIEW": 1
+      },
+      "leaderModels": {
+        "policy:prd-glm": 1,
+        "policy:prd-minimax": 1,
+        "policy:prd-gpt-5-4": 2,
+        "google/gemini-3-flash-preview": 1
+      },
+      "avgElapsedSeconds": "17.27",
+      "meetsThreshold90Pct": false,
+      "runs": [
+        {
+          "run": 1,
+          "txHash": "0x998eba02c021ba9fe5e352f32681bc059871b85f27ae4af0a727eb5c10cba763",
+          "elapsed": 25.1,
+          "leaderModel": "policy:prd-glm",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 2,
+          "txHash": "0x0db8c50b6e0883f7c28d64b613dd7f1edfa5f2bd9dd46069120e8a1562952abb",
+          "elapsed": 17.11,
+          "leaderModel": "policy:prd-minimax",
+          "parseOk": false,
+          "verdict": "REVIEW"
+        },
+        {
+          "run": 3,
+          "txHash": "0x295ca8f4e1f5316677b8339e8d0820ee223c0fad4d35cc32b9c8c28f49435348",
+          "elapsed": 17.18,
+          "leaderModel": "policy:prd-gpt-5-4",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 4,
+          "txHash": "0x54296e6fcc6b2d16774c69fdbefd35ccd3ab1f11c0836f36ded6f0d3667afbf6",
+          "elapsed": 13.51,
+          "leaderModel": "google/gemini-3-flash-preview",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 5,
+          "txHash": "0x313ab56a66269c73e1571daec9838f2f589140bb7f2172dbfd2f4881685c9856",
+          "elapsed": 13.43,
+          "leaderModel": "policy:prd-gpt-5-4",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        }
+      ]
+    },
+    "v6": {
+      "name": "terms-v6-salami1.md",
+      "totalRuns": 5,
+      "parseSuccessCount": 5,
+      "parseSuccessRatePct": "100.0",
+      "verdictDistribution": {
+        "MATERIAL": 1,
+        "MINOR": 4
+      },
+      "leaderModels": {
+        "anthropic/claude-sonnet-4.6": 1,
+        "policy:prd-deepseek": 1,
+        "openai/gpt-5.4": 1,
+        "policy:prd-kimi": 1,
+        "policy:prd-gemma": 1
+      },
+      "avgElapsedSeconds": "16.50",
+      "meetsThreshold90Pct": true,
+      "runs": [
+        {
+          "run": 1,
+          "txHash": "0x818f6c26a90929c1286b0370a775c9fc3477bf02e70d56f7c97c324c7d8ef50b",
+          "elapsed": 13.48,
+          "leaderModel": "anthropic/claude-sonnet-4.6",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 2,
+          "txHash": "0x2b90eafb4ea3946fe7a2a24c2433a6e920b1970f9177ebfb2818e80288d2624a",
+          "elapsed": 13.44,
+          "leaderModel": "policy:prd-deepseek",
+          "parseOk": true,
+          "verdict": "MINOR"
+        },
+        {
+          "run": 3,
+          "txHash": "0xd603cddedd0aa445c19fdede8460ce40d4fcd3215b0a8101a6b4ba343da89824",
+          "elapsed": 13.4,
+          "leaderModel": "openai/gpt-5.4",
+          "parseOk": true,
+          "verdict": "MINOR"
+        },
+        {
+          "run": 4,
+          "txHash": "0x5212b44915881540be3d300ce6c152c2e110d536f7ac47b204e299cf27ab2295",
+          "elapsed": 24.84,
+          "leaderModel": "policy:prd-kimi",
+          "parseOk": true,
+          "verdict": "MINOR"
+        },
+        {
+          "run": 5,
+          "txHash": "0x6c6a50068a4d57db22b1f72878a021ec7ea3cc30b52b98c8f8edf721a8eba41d",
+          "elapsed": 17.34,
+          "leaderModel": "policy:prd-gemma",
+          "parseOk": true,
+          "verdict": "MINOR"
+        }
+      ]
+    },
+    "v7": {
+      "name": "terms-v7-salami2.md",
+      "totalRuns": 5,
+      "parseSuccessCount": 5,
+      "parseSuccessRatePct": "100.0",
+      "verdictDistribution": {
+        "MATERIAL": 5
+      },
+      "leaderModels": {
+        "policy:prd-grok": 1,
+        "openai/gpt-5.4": 1,
+        "google/gemini-3-flash-preview": 1,
+        "policy:prd-minimax": 1,
+        "policy:prd-qwen": 1
+      },
+      "avgElapsedSeconds": "14.12",
+      "meetsThreshold90Pct": true,
+      "runs": [
+        {
+          "run": 1,
+          "txHash": "0xe1f295a26e6dea6de17aaf03cb4d6fcf5346331747061b7bd41f9cbf3b2dbcc6",
+          "elapsed": 13.56,
+          "leaderModel": "policy:prd-grok",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 2,
+          "txHash": "0xf5f759c234f4ed77250053ca89571519d242d82e5c2e5e0f9ae7383b67a86f03",
+          "elapsed": 13.26,
+          "leaderModel": "openai/gpt-5.4",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 3,
+          "txHash": "0x93c368777cc2bc1ce5ea0c35fd48251b948c63162ed2267395459ffb025a6d18",
+          "elapsed": 13.32,
+          "leaderModel": "google/gemini-3-flash-preview",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 4,
+          "txHash": "0x0ef536e9889e0061b8a1f5943a9ca81e4cc9110ca5df93cdcee9e3cd62d64f06",
+          "elapsed": 13.26,
+          "leaderModel": "policy:prd-minimax",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        },
+        {
+          "run": 5,
+          "txHash": "0x51a397dc1843f807ac18df410ae78a325c4115ac17a7aaf8b0016b4832a70a08",
+          "elapsed": 17.2,
+          "leaderModel": "policy:prd-qwen",
+          "parseOk": true,
+          "verdict": "MATERIAL"
+        }
+      ]
+    }
+  }
+}

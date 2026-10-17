@@ -1,0 +1,16 @@
+Fixture: v6 (terms-v6-salami1.md)
+Run: 5
+Tx Hash: 0x6c6a50068a4d57db22b1f72878a021ec7ea3cc30b52b98c8f8edf721a8eba41d
+Elapsed: 17.34s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: policy:prd-gemma
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MINOR
+Parsed Changes: ["MINOR"]
+Parsed Redlines: ["CLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+```json
+{"changes": ["MINOR"], "redlines": ["CLEAR", "CLEAR", "CLEAR", "CLEAR"]}
+```

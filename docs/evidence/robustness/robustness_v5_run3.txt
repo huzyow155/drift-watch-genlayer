@@ -1,0 +1,14 @@
+Fixture: v5 (terms-v5-harmless.md)
+Run: 3
+Tx Hash: 0x0e5d949ccd7d14adf96df501ca354bb7305ac8cd19e7313571463494a787ab30
+Elapsed: 13.32s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: openai/gpt-5.4
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: NONE
+Parsed Changes: ["NONE"]
+Parsed Redlines: ["CLEAR","CLEAR","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+{"changes":["NONE"],"redlines":["CLEAR","CLEAR","CLEAR","CLEAR"]}

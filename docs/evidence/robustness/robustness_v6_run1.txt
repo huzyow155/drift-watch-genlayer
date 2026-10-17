@@ -1,0 +1,16 @@
+Fixture: v6 (terms-v6-salami1.md)
+Run: 1
+Tx Hash: 0x818f6c26a90929c1286b0370a775c9fc3477bf02e70d56f7c97c324c7d8ef50b
+Elapsed: 13.48s
+Receipt Status: ACCEPTED / MAJORITY_AGREE
+Leader Model: anthropic/claude-sonnet-4.6
+Parse Result: SUCCESS
+Parse Reason: parsed strictly
+Evaluated Verdict: MATERIAL
+Parsed Changes: ["MINOR"]
+Parsed Redlines: ["CLEAR","HIT","CLEAR","CLEAR"]
+
+--- RAW MODEL OUTPUT ---
+```json
+{"changes": ["MINOR"], "redlines": ["CLEAR", "HIT", "CLEAR", "CLEAR"]}
+```
