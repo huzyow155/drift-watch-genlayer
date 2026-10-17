@@ -22,11 +22,13 @@ To avoid post-hoc justification, the following rule was established prior to exe
 
 | Fixture | Name | Planned Runs | Parse Success | Parse Success % | Verdict Distribution | Avg Elapsed | Meets >=90% Rule? |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **v2** | `terms-v2-subtle.md` | 10 | **10 / 10** | **100.0%** | MATERIAL: 9, MINOR: 1 | 15.54s | **YES** |
+| **v2** | `terms-v2-subtle.md` | 10 | **10 / 10** | **100.0%** | MATERIAL: 9, REVIEW: 1 | 15.54s | **YES** |
 | **v5** | `terms-v5-harmless.md` | 10 | **10 / 10** | **100.0%** | NONE: 10 | 13.38s | **YES** |
 | **v3** | `terms-v3-obvious.md` | 5 | **4 / 5** | **80.0%** | MATERIAL: 4, REVIEW: 1 | 17.27s | **NO** |
 | **v6** | `terms-v6-salami1.md` | 5 | **5 / 5** | **100.0%** | MATERIAL: 1, MINOR: 4 | 16.50s | **YES** |
 | **v7** | `terms-v7-salami2.md` | 5 | **5 / 5** | **100.0%** | MATERIAL: 5 | 14.12s | **YES** |
+
+*Note: An earlier harness `decide()` did not match the contract; fixed in commit db9ca4df07e76dfe2cf8efc0fd3c13ab4f632743, verdicts recomputed offline from saved raw outputs.*
 
 ---
 

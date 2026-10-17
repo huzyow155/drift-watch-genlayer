@@ -68,13 +68,35 @@ function parseLabelsStrict(text, n_changes, n_redlines) {
 }
 
 function decide(ch_labels, rl_flags, tripwire = false) {
-  if (tripwire) return "MATERIAL";
-  if (rl_flags.some(r => r === "HIT")) return "MATERIAL";
-  if (ch_labels.some(c => c === "MATERIAL")) return "MATERIAL";
-  if (ch_labels.some(c => c === "MINOR")) return "MINOR";
-  if (ch_labels.some(c => c === "UNCLEAR") || rl_flags.some(r => r === "UNCLEAR")) return "REVIEW";
-  if (ch_labels.every(c => c === "NONE") && rl_flags.every(r => r === "CLEAR")) return "NONE";
-  return "REVIEW";
+  // Any red line HIT -> MATERIAL
+  if (rl_flags.some(flag => flag === "HIT")) {
+    return "MATERIAL";
+  }
+
+  // Else any change MATERIAL -> MATERIAL
+  if (ch_labels.some(lbl => lbl === "MATERIAL")) {
+    return "MATERIAL";
+  }
+
+  // Else any UNCLEAR -> REVIEW
+  if (ch_labels.some(lbl => lbl === "UNCLEAR") || rl_flags.some(flag => flag === "UNCLEAR")) {
+    return "REVIEW";
+  }
+
+  // Else any change MINOR -> MINOR
+  let verdict;
+  if (ch_labels.some(lbl => lbl === "MINOR")) {
+    verdict = "MINOR";
+  } else {
+    verdict = "NONE";
+  }
+
+  // Tripwire floor: if tripwire fired and verdict is NONE or MINOR -> REVIEW
+  if (tripwire && (verdict === "NONE" || verdict === "MINOR")) {
+    return "REVIEW";
+  }
+
+  return verdict;
 }
 
 async function sleep(ms) {

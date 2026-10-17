@@ -353,10 +353,10 @@ async function main() {
   evidence.latencies.gate_cosmetic = checkV1Res.elapsed;
 
   // -------------------------------------------------------------------------
-  // Case (d): v2 through v7 live checks
+  // Case (d): v2 through v7 on-chain checks
   // -------------------------------------------------------------------------
   console.log("\n=================================================");
-  console.log("CASE (d): Live checks for v2 through v7");
+  console.log("CASE (d): On-chain checks for v2 through v7");
   console.log("=================================================");
 
   // v2: subtle -> MATERIAL

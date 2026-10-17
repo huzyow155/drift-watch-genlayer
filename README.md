@@ -111,7 +111,7 @@ A statistical robustness evaluation across 60 on-chain probe transactions on Stu
 - **Harmless edit (`v5`)**: 100.0% (10 / 10 runs parsed cleanly).
 - **Salami creep regressions (`v6`, `v7`)**: 100.0% (15 / 15 runs parsed cleanly).
 
-Verdict variance exists across frontier models for boundary semantic classifications (for example, fixture `v6` produced 8/10 `MINOR` and 2/10 `MATERIAL`), reflecting model judgment differences rather than parse errors.
+Verdict variance exists across frontier models for boundary semantic classifications: fixture `v2` produced 9/10 `MATERIAL` and 1/10 `REVIEW` (run 8 where an UNCLEAR redline flag triggered a fail-safe review under contract consensus rules), and fixture `v6` produced 8/10 `MINOR` and 2/10 `MATERIAL`, reflecting model judgment differences rather than parse errors.
 
 **Fail-safe behavior**: When a model outputs an unparseable format (such as nested dictionaries or duplicated list lengths), the contract's strict parser deliberately rejects the output and falls back to `REVIEW`. This triggers an alarm state in `DriftGuard` (`is_safe() == false`), ensuring that model hallucinations or formatting deviations can never create false-negative security clearances (safe but noisy).
 

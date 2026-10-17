@@ -6,7 +6,7 @@ Receipt Status: ACCEPTED / MAJORITY_AGREE
 Leader Model: policy:prd-grok
 Parse Result: SUCCESS
 Parse Reason: parsed strictly
-Evaluated Verdict: MINOR
+Evaluated Verdict: REVIEW
 Parsed Changes: ["MINOR"]
 Parsed Redlines: ["UNCLEAR","CLEAR","CLEAR","CLEAR"]
 
